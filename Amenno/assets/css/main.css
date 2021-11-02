@@ -1248,6 +1248,11 @@ a.cart-btn:hover {
   color: #359bdf;
 }
 
+a.heart-btn:hover {
+  background-color: #f80f07;
+  color: #e90707;
+}
+
 .recent-posts ul li {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
@@ -2454,9 +2459,32 @@ a.cart-btn {
   padding: 10px 20px;
 }
 
+a.heart-btn {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  display: inline-block;
+  background-color: #df3535;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 45%;
+}
+
+.btn-circle.btn-md {
+  width: 50px;
+  height: 50px;
+  padding: 12px 10px;
+  border-radius: 25px;
+  font-size: 15px;
+  text-align: center;
+}
+
 a.cart-btn i {
   margin-right: 5px;
 }
+
+
+
+
 
 .single-product-img img {
   border-radius: 5px;
@@ -2765,4 +2793,18 @@ table.order-details tbody td {
   display: table-cell;
   vertical-align: middle;
   width: 100%;
+}
+
+/* Login and register Forms */
+
+.login-form {
+  width: 340px;
+  margin: 50px auto;
+  font-size: 15px;
+}
+.login-form form {
+  margin-bottom: 15px;
+  background: #f7f7f7;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
 }
