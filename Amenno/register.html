@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,57 +33,76 @@
         <link rel="stylesheet" href="assets/css/responsive.css">
     
     </head>
-<body style="background: #051922;">
-<div class="login-form">
-    <form action="registerprocess.php" method="post" id="form">
-        <h2 class="text-center">Sign Up</h2>     
+    <body style="background: #051922;">
+    <div class="login-form">
+        <form action="registerprocess.php" method="post" id="form">
+            <h2 class="text-center">Sign Up</h2>     
 
-        <div class="form-group">
-            <input type="text" class="form-control" id = "fullname" placeholder="Full Name"  name="fname">
+            <div class="form-group">
+                <input type="text" class="form-control" id = "fullname" placeholder="Full Name"  name="fname">
 
-            <div class="error"></div>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" id = "email" placeholder="Email" name="email">
-  
-            <div class="error"></div>
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" id = "password" placeholder="Password"  name="pword">
+                <div class="error"></div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id = "email" placeholder="Email" name="email">
+    
+                <div class="error"></div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id = "password" placeholder="Password"  name="pword">
 
-            <div class="error"></div>
-        </div>
+                <div class="error"></div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id = "cpassword" placeholder="Confirm Password"  name="cpword">
 
-        <div class="form-group">
-            <input type="text" class="form-control" id = "country" placeholder="Country"  name="ctry">
+                <div class="error"></div>
+            </div>
 
-            <div class="error"></div>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" id = "city" placeholder="City"  name="city">
-  
-            <div class="error"></div>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" id = "contact" placeholder="Contact Number"  name="ctt">
-  
-            <div class="error"></div>
-        </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id = "country" placeholder="Country"  name="ctry">
+
+                <div class="error"></div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id = "city" placeholder="City"  name="city">
+    
+                <div class="error"></div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id = "contact" placeholder="Contact Number"  name="ctt">
+    
+                <div class="error"></div>
+            </div>
+
+
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block" id= "submitbtn" name="add_user"> Sign Up</button>
+            </div>
+            <div class="clearfix">
+                <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+                <a href="#" class="float-right">Forgot Password?</a>
+            </div>        
+
+            <p class="text-center mt-4"><a href="login.html"> Sign in</a></p>
+        </form>
+
+        <?php
+            if($errors){
+                foreach($errors as $error){
+                        echo "<div class='alert alert-danger' role='alert'>".
+                            $error."</div>";
+                        }
+                    }
+       ?>
 
 
         
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block"  name="add_user"> Sign Up</button>
-        </div>
-        <div class="clearfix">
-            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-            <a href="#" class="float-right">Forgot Password?</a>
-        </div>        
-
-        <p class="text-center mt-4"><a href="login.html"> Sign in</a></p>
-    </form>
-    
-</div>
+    </div>
+    <script src="../Amenno/assets/js/validation.js"></script>
+    <script src="../Ameno/assets/js/jquery-1.11.3.min.js"></script>
+    <script src="../Ameno/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
