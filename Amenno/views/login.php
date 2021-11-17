@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="assets/css/all.min.css">
         <!-- bootstrap -->
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/bootstrap/css/validation.css">
         <!-- owl carousel -->
         <link rel="stylesheet" href="assets/css/owl.carousel.css">
         <!-- magnific popup -->
@@ -33,34 +34,42 @@
     
     </head>
 
-<body style="background: #051922;">
-<div class="login-form">
-    <form action="registerprocess.php" method="post" id="login-form">
-    <a class="btn btn-outline-success " href="index.html" >Back</a>
-        <h2 class="text-center">Log in</h2> 
-        
-        <div class="row no-gutters"><div id="error-block-email" class="error-block-message col-md-8 offset-md-4 text-left"></div></div>
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Email" required="required" name="email">
-        </div>
+    <body style="background: #051922;">
+    <div class="login-form">
+        <form action="" method="post" id="login-form">
+        <a class="btn btn-outline-success " href="index.html" >Back</a>
+            <h2 class="text-center">Log in</h2> 
+            
+            <div class="row no-gutters"><div id="error-block-email" class="error-block-message col-md-8 offset-md-4 text-left"></div></div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email" id="email" name="email">
+                <small></small>
+            </div>
 
-        <div class="row no-gutters"><div id="error-block-password" class="error-block-message col-md-8 offset-md-4 text-left"></div></div>
-        <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" required="required" name="pword">
-        </div>
+            <div class="row no-gutters"><div id="error-block-password" class="error-block-message col-md-8 offset-md-4 text-left"></div></div>
+            <div class="form-group">
+                <input type="password" class="form-control" id = 'password' placeholder="Password"  name="pword">
+               <small></small>
+            </div>
 
-        
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block" name="login_user">Log in</button>
-        </div>
-        <div class="clearfix">
-            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-            <a href="#" class="float-right">Forgot Password?</a>
-        </div>   
-        
-        <p class="text-center mt-4"><a href="register.html">Create an Account</a></p>
-    </form>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block" id= "submitbtn" name="login_user">Log in</button>
+            </div>
+            <div class="clearfix">
+                <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+                <a href="#" class="float-right">Forgot Password?</a>
+            </div>   
+            
+            <p class="text-center mt-4"><a href="register.html">Create an Account</a></p>
+        </form>
     
-</div>
+    </div>
+    <script src="../Amenno/assets/js/loginvalidation.js"></script>
+    <script src="../Amenno/assets/js/jquery-1.11.3.min.js"></script>
+    <script src="../Amenno/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+   
+
+
 </body>
 </html>
