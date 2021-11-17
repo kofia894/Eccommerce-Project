@@ -19,6 +19,8 @@
         <link rel="stylesheet" href="assets/css/all.min.css">
         <!-- bootstrap -->
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/bootstrap/css/validation.css">
+
         <!-- owl carousel -->
         <link rel="stylesheet" href="assets/css/owl.carousel.css">
         <!-- magnific popup -->
@@ -41,38 +43,29 @@
             <div class="form-group">
                 <input type="text" class="form-control" id = "fullname" placeholder="Full Name"  name="fname">
 
-                <div class="error"></div>
+                <small></small>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" id = "email" placeholder="Email" name="email">
     
-                <div class="error"></div>
+                <div class="error"><small></small></div>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" id = "password" placeholder="Password"  name="pword">
 
-                <div class="error"></div>
+                <div class="error"><small></small></div>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" id = "cpassword" placeholder="Confirm Password"  name="cpword">
 
-                <div class="error"></div>
+                <div class="error"><small></small></div>
             </div>
 
-            <div class="form-group">
-                <input type="text" class="form-control" id = "country" placeholder="Country"  name="ctry">
 
-                <div class="error"></div>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id = "city" placeholder="City"  name="city">
-    
-                <div class="error"></div>
-            </div>
             <div class="form-group">
                 <input type="text" class="form-control" id = "contact" placeholder="Contact Number"  name="ctt">
     
-                <div class="error"></div>
+                <div class="error"><small></small></div>
             </div>
 
 
@@ -88,21 +81,21 @@
             <p class="text-center mt-4"><a href="login.html"> Sign in</a></p>
         </form>
 
-        <?php
+        <!-- <?php
             if($errors){
                 foreach($errors as $error){
                         echo "<div class='alert alert-danger' role='alert'>".
                             $error."</div>";
                         }
                     }
-       ?>
+       ?> -->
 
 
         
     </div>
     <script src="../Amenno/assets/js/validation.js"></script>
-    <script src="../Ameno/assets/js/jquery-1.11.3.min.js"></script>
-    <script src="../Ameno/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../Amenno/assets/js/jquery-1.11.3.min.js"></script>
+    <script src="../Amenno/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
