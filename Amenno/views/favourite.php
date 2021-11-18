@@ -72,7 +72,6 @@ $result = view_favourite_controller($ip_add, $_SESSION['customer_id']);
 								<ul>
 									<li ><a href="../index.php">Home</a></li>
 									<li><a href="shop.php">Shop</a></li>
-									<li><a href="rent.php">Rent</a></li>
 									<li class="current-list-item" ><a href="favourite.php">Favourite</a></li>
 									<li><a href="contact.php">Contact</a></li>
 

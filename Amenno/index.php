@@ -71,7 +71,6 @@ session_start();
 								<ul>
 									<li class="current-list-item"><a href="index.php">Home</a></li>
 									<li><a href="views/shop.php">Shop</a></li>
-									<li><a href="views/rent.php">Rent</a></li>
 									<li><a href="views/favourite.php">Favourite</a></li>
 									<li><a href="views/contact.php">Contact</a></li>
 

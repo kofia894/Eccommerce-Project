@@ -73,14 +73,13 @@ if(isset($_SESSION['customer_id'])){
 								<ul>
 									<li><a href="../index.php">Home</a></li>
 									<li><a href="shop.php">Shop</a></li>
-									<li><a href="rent.php">Rent</a></li>
 									<li><a href="favourite.php">Favourite</a></li>
 									<li><a href="contact.php">Contact</a></li>
 									<li class="current-list-item"><a href="cart.php">Cart</a></li>
 
 									<?php 
 										if(isset($_SESSION['user_role']) == 1){
-											echo'<li><a href="Admin/index.php">Admin Side</a></li> ';
+											echo'<li><a href="../Admin/index.php">Admin Side</a></li> ';
 										}
 									?>
 									
@@ -224,7 +223,7 @@ if(isset($_SESSION['customer_id'])){
 							</tbody>
 						</table>
 						<div class="cart-buttons">
-							<a href="checkout.html" class="boxed-btn black">Check Out</a>
+							<a href="checkout.php" class="boxed-btn black">Check Out</a>
 						</div>
 					</div>
 
