@@ -53,7 +53,7 @@ if(isset($_POST['login_user'])){
                 $_SESSION['user_role'] = 1;
             }
 
-            $_SESSION['user_id'] = $email;
+            $_SESSION['user_id'] = $result['customer_name'];
             $_SESSION['customer_id'] = $result['customer_id'];
 
 
