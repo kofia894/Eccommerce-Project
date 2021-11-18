@@ -12,12 +12,13 @@ if(isset($_POST['add_cname'])){
 
 
     if($result === true){
+        header('Location: ../Admin/Category.php');
         echo '<script>alert("Category Inserted")</script>';
         // header('Location: Add_brand.php');
         // header('Location: ');
     } 
     else {
-        header('Location: Category.php');
+        header('Location: ../Admin/Category.php');
         echo '<script>alert("Unable to insert")</script>';
         
     }

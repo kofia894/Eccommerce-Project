@@ -76,7 +76,7 @@ session_start();
                                     <div id="submenu-1" class="collapse submenu" style="">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="index.html">Home</a>
+                                                <a class="nav-link" href="index.php">Home</a>
                                             </li>
                                           
                                             <li class="nav-item">
@@ -141,6 +141,7 @@ session_start();
                              <h2> Products</h2>
                             </div>
                             <div class="card-body">
+                                <a class="btn btn-primary text-white" href="product.php"> Add Product</a>
                                 <?php 
 
                                 $products = select_all_products_controller();

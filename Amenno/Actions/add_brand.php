@@ -1,5 +1,5 @@
 <?php 
-echo '<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
+
 require('../Controllers/product_controller.php');
 
 
@@ -13,16 +13,13 @@ if(isset($_POST['add_bname'])){
 
 
     if($result === true){
-        echo "<script>Swal.fire(
-            'Good job!',
-            'You clicked the button!',
-            'success'
-            )</script>";
+        header('Location: ../Admin/brand.php');
+        echo '<script>alert(" inserted")</script>';
         // header('Location: Add_brand.php');
         // header('Location: ');
     } 
     else {
-        header('Location: brand.php');
+        header('Location: ../Admin/brand.php');
         echo '<script>alert("Unable to insert")</script>';
         
     }

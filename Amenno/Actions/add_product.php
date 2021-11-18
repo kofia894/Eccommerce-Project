@@ -65,6 +65,7 @@ if(isset($_POST['add_pname'])){
 
 
     if($result === true){
+        header('Location: ../Admin/product_list.php');
         echo '<script>alert("Product Inserted")</script>';
         
         // header('Location: ');

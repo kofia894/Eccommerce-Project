@@ -10,6 +10,14 @@ function add_product_controller($prod_cat,$prod_brand,$title, $price, $desc,  $k
     return $product_instance->add_product($prod_cat,$prod_brand,$title, $price, $desc, $keywords);
 
 }
+
+function add_to_favourite_controller($prod_id,$ip_add,$c_id){
+    // create an instance of the Product class
+    $product_instance = new Product();
+    // call the method from the class
+    return $product_instance->add_to_favourite($prod_id,$ip_add,$c_id);
+
+}
 function add_brand_controller($brand){
     // create an instance of the Product class
     $product_instance = new Product();

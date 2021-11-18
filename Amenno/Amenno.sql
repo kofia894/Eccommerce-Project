@@ -48,6 +48,17 @@ CREATE TABLE `cart` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `favourite`
+--
+
+CREATE TABLE `favourite` (
+  `p_id` int(11) NOT NULL,
+  `ip_add` varchar(50) NOT NULL,
+  `c_id` int(11) DEFAULT NULL,
+  `qty` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
 -- Table structure for table `categories`
 --
 
@@ -67,8 +78,6 @@ CREATE TABLE `customer` (
   `customer_name` varchar(100) NOT NULL,
   `customer_email` varchar(50) NOT NULL,
   `customer_pass` varchar(150) NOT NULL,
-  `customer_country` varchar(30) NOT NULL,
-  `customer_city` varchar(30) NOT NULL,
   `customer_contact` varchar(15) NOT NULL,
   `customer_image` varchar(100) DEFAULT NULL,
   `user_role` int(11) NOT NULL
@@ -146,6 +155,13 @@ ALTER TABLE `brands`
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
+  ADD KEY `p_id` (`p_id`),
+  ADD KEY `c_id` (`c_id`);
+
+  --
+-- Indexes for table `favourite`
+--
+ALTER TABLE `favourite`
   ADD KEY `p_id` (`p_id`),
   ADD KEY `c_id` (`c_id`);
 
@@ -242,6 +258,13 @@ ALTER TABLE `products`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`c_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `favourite`
+--
+ALTER TABLE `favourite`
+  ADD CONSTRAINT `favourite_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `favourite_ibfk_2` FOREIGN KEY (`c_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orderdetails`

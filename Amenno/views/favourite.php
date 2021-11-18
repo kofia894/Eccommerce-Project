@@ -1,5 +1,10 @@
 <?php 
+require('../Controllers/favourite_controller.php');
+require ('../Settings/core.php');
 session_start();
+
+$ip_add = $_SERVER['REMOTE_ADDR'];
+$result = view_favourite_controller($ip_add, $_SESSION['customer_id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,10 +15,10 @@ session_start();
 	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>Contact</title>
+	<title>Favourites</title>
 
 	<!-- favicon -->
-	<!-- <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png"> -->
+	<!-- <link rel="shortcut icon" type="image/png" href="../assets/img/favicon.png"> -->
 	<!-- google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -45,33 +50,33 @@ session_start();
     </div>
     <!--PreLoader Ends-->
 	
-	<!-- header -->
-	<div class="top-header-area" id="sticker">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-sm-12 text-center">
-					<div class="main-menu-wrap">
-						<!-- logo -->
-						<div class="site-logo">
-							<a href="index.html">
-								<img src="#" alt="">
-							</a>
-						</div>
-						<!-- logo -->
+<!-- header -->
+<div class="top-header-area" id="sticker">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- logo -->
+                    <!-- <div class="site-logo">
+                        <a href="index.html">
+                            <img src="../assets/img/logo.png" alt="">
+                        </a>
+                    </div> -->
+                    <!-- logo -->
 
-						<!-- menu start -->
-						<nav class="navbar navbar-expand-lg main-menu">
+                    <!-- menu start -->
+                    <nav class="navbar navbar-expand-lg main-menu">
 							<div class = "container-fluid">
 								<ul>
 									<li ><a href="../index.php">Home</a></li>
 									<li><a href="shop.php">Shop</a></li>
 									<li><a href="rent.php">Rent</a></li>
-									<li><a href="favourite.php">Favourite</a></li>
-									<li class="current-list-item" ><a href="contact.php">Contact</a></li>
+									<li class="current-list-item" ><a href="favourite.php">Favourite</a></li>
+									<li><a href="contact.php">Contact</a></li>
 
 									<?php 
 										if(isset($_SESSION['user_role']) == 1){
-											echo'<li><a href="Admin/index.php">Admin Side</a></li> ';
+											echo'<li><a href="../Admin/index.php">Admin Side</a></li> ';
 										}
 									?>
 									
@@ -93,25 +98,26 @@ session_start();
 											if(isset($_SESSION['user_id'])){
 											echo "<p class='text-white mr-5'> Welcome ".$_SESSION['user_id'] ." ! </p>";
 											}else {
-											echo " <a class='btn btn-outline-success' href='views/login.php'> Login | Register</a> ";
+											echo " <a class='btn btn-outline-success' href='login.php'> Login | Register</a> ";
 											}
 
 										?>
-										<a class="btn btn-outline-success" name="logout" href="Actions/registerprocess.php?logout='$_SESSION[`user_id`]'">Logout</a>
+										<a class="btn btn-outline-success" name="logout" href="../Actions/registerprocess.php?logout='$_SESSION[`user_id`]'">Logout</a>
 								</form>
 
 							</dvi>
 							
 						</nav>
-						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-						<div class="mobile-menu"></div>
-						<!-- menu end -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end header -->
+                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+                    <!-- menu end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+
 
 	<!-- search area -->
 	<div class="search-area">
@@ -138,8 +144,7 @@ session_start();
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Get 24/7 Support</p>
-						<h1>Contact us</h1>
+						<h1>Favourites</h1>
 					</div>
 				</div>
 			</div>
@@ -147,71 +152,63 @@ session_start();
 	</div>
 	<!-- end breadcrumb section -->
 
-	<!-- contact form -->
-	<div class="contact-from-section mt-150 mb-150">
+	<!-- products -->
+	<div class="product-section mt-150 mb-150">
 		<div class="container">
+
+
+			<div class="row product-lists">
+				
+					<div class=" container single-product">
+					<?php 
+						foreach($result as $fav){
+							echo"
+							<div class='card mb-3' style='max-width: 100%;'>
+								<div class='row g-0'>
+									<div class='col-md-4'>
+									<img src='../Images/Products/imageholder.jpg' class='img-fluid rounded-start' alt='...'>
+									</div>
+									<div class='col-md-7'>
+										<div class='card-body'>
+											<h5 class='card-title'>$fav[product_title]</h5>
+											<p class='card-text'>$fav[product_desc]</p>
+											<p class='card-text'><small class='text-muted'>Last updated 3 mins ago</small></p>
+										</div>
+									</div>
+									<div class='col'>
+
+										<form action='../Actions/add_to_favourite.php' method='post' class='d-flex'>
+											<input type='hidden' name='p_id' value =". $fav['product_id'].">
+											<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
+											<button class= 'btn btn-outline-danger btn-circle btn-md fas fa-trash-alt' style='margin-top:90%;' name = 'add_fav'> </button>
+										</form>
+
+									</div>
+								</div>
+							</div>
+								";
+
+						}
+					?>
+					</div>
+			</div>
+
 			<div class="row">
-				<div class="col-lg-8 mb-5 mb-lg-0">
-					<div class="form-title">
-						<h2>Have you any question?</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
-					</div>
-				 	<div id="form_status"></div>
-					<div class="contact-form">
-						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
-							<p>
-								<input type="text" placeholder="Name" name="name" id="name">
-								<input type="email" placeholder="Email" name="email" id="email">
-							</p>
-							<p>
-								<input type="tel" placeholder="Phone" name="phone" id="phone">
-								<input type="text" placeholder="Subject" name="subject" id="subject">
-							</p>
-							<p><textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea></p>
-							<input type="hidden" name="token" value="FsWga4&@f6aw" />
-							<p><input type="submit" value="Submit"></p>
-						</form>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="contact-form-wrap">
-						<div class="contact-form-box">
-							<h4><i class="fas fa-map"></i> Shop Address</h4>
-							<p>34/8, East Hukupara <br> Gifirtok, Sadan. <br> Country Name</p>
-						</div>
-						<div class="contact-form-box">
-							<h4><i class="far fa-clock"></i> Shop Hours</h4>
-							<p>MON - FRIDAY: 8 to 9 PM <br> SAT - SUN: 10 to 8 PM </p>
-						</div>
-						<div class="contact-form-box">
-							<h4><i class="fas fa-address-book"></i> Contact</h4>
-							<p>Phone: +00 111 222 3333 <br> Email: support@fruitkha.com</p>
-						</div>
+				<div class="col-lg-12 text-center">
+					<div class="pagination-wrap">
+						<ul>
+							<li><a href="#">Prev</a></li>
+							<li><a href="#">1</a></li>
+							<li><a class="active" href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">Next</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end contact form -->
-
-	<!-- find our location -->
-	<!-- <div class="find-location blue-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<p> <i class="fas fa-map-marker-alt"></i> Find Our Location</p>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<!-- end find our location -->
-
-	<!-- google map section -->
-	<!-- <div class="embed-responsive embed-responsive-21by9">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26432.42324808999!2d-118.34398767954286!3d34.09378509738966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bf07045279bf%3A0xf67a9a6797bdfae4!2sHollywood%2C%20Los%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1576846473265!5m2!1sen!2sbd" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" class="embed-responsive-item"></iframe>
-	</div> -->
-	<!-- end google map section -->
-
+	<!-- end products -->
 
 	<!-- footer -->
 	<div class="footer-area">
@@ -266,10 +263,8 @@ session_start();
 	<script src="../assets/js/jquery.meanmenu.min.js"></script>
 	<!-- sticker js -->
 	<script src="../assets/js/sticker.js"></script>
-	<!-- form validation js -->
-	<script src="../assets/js/form-validate.js"></script>
 	<!-- main js -->
 	<script src="../assets/js/main.js"></script>
-	
+
 </body>
 </html>

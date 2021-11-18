@@ -8,7 +8,7 @@
         <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
     
         <!-- title -->
-        <title>Ameno</title>
+        <title>Amenno</title>
     
         <!-- favicon -->
         <!-- <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png"> -->
@@ -16,28 +16,28 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
         <!-- fontawesome -->
-        <link rel="stylesheet" href="assets/css/all.min.css">
+        <link rel="stylesheet" href="../assets/css/all.min.css">
         <!-- bootstrap -->
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/bootstrap/css/validation.css">
+        <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/bootstrap/css/validation.css">
 
         <!-- owl carousel -->
-        <link rel="stylesheet" href="assets/css/owl.carousel.css">
+        <link rel="stylesheet" href="../assets/css/owl.carousel.css">
         <!-- magnific popup -->
-        <link rel="stylesheet" href="assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="../assets/css/magnific-popup.css">
         <!-- animate css -->
-        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="../assets/css/animate.css">
         <!-- mean menu css -->
-        <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+        <link rel="stylesheet" href="../assets/css/meanmenu.min.css">
         <!-- main style -->
-        <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="../assets/css/main.css">
         <!-- responsive -->
-        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="../assets/css/responsive.css">
     
     </head>
     <body style="background: #051922;">
     <div class="login-form">
-        <form action="registerprocess.php" method="post" id="form">
+        <form action="../Actions/registerprocess.php" method="post" id="form">
             <h2 class="text-center">Sign Up</h2>     
 
             <div class="form-group">
@@ -73,12 +73,9 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block" id= "submitbtn" name="add_user"> Sign Up</button>
             </div>
-            <div class="clearfix">
-                <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-                <a href="#" class="float-right">Forgot Password?</a>
-            </div>        
+                    
 
-            <p class="text-center mt-4"><a href="login.html"> Sign in</a></p>
+            <p class="text-center mt-4"><a href="login.php"> Sign in</a></p>
         </form>
 
         <!-- <?php
@@ -93,9 +90,9 @@
 
         
     </div>
-    <script src="../Amenno/assets/js/validation.js"></script>
-    <script src="../Amenno/assets/js/jquery-1.11.3.min.js"></script>
-    <script src="../Amenno/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/validation.js"></script>
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

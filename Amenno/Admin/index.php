@@ -28,7 +28,7 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a type="button"href="../index.html" class="btn btn-primary">Back</a>
+                <a type="button"href="../index.php" class="btn btn-primary">Back</a>
                 <a class="navbar-brand" href="index.html">Amenoo</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -69,7 +69,7 @@
                                     <div id="submenu-1" class="collapse submenu" style="">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="index.html">Home</a>
+                                                <a class="nav-link" href="index.php">Home</a>
                                             </li>
                                           
                                             <li class="nav-item">

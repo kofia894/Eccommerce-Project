@@ -1,3 +1,9 @@
+<?php 
+session_start();
+
+
+?>
+
 <!DOCTYPE php
 >
 <php
@@ -60,27 +66,51 @@
 						<!-- logo -->
 
 						<!-- menu start -->
-						<nav class="main-menu">
-							<ul>
-								<li class="current-list-item"><a href="index.php">Home</a></li>
-								<li><a href="views/shop.php">Shop</a></li>
-								<li><a href="views/rent.php">Rent</a></li>
-								<li><a href="#">Favourite</a></li>
-								<li><a href="views/contact.php">Contact</a></li>
-								<li><a href="Admin/index.php">Admin Side</a></li>
+						<nav class="navbar navbar-expand-lg main-menu">
+							<div class = "container-fluid">
+								<ul>
+									<li class="current-list-item"><a href="index.php">Home</a></li>
+									<li><a href="views/shop.php">Shop</a></li>
+									<li><a href="views/rent.php">Rent</a></li>
+									<li><a href="views/favourite.php">Favourite</a></li>
+									<li><a href="views/contact.php">Contact</a></li>
+
+									<?php 
+										if(isset($_SESSION['user_role']) == 1){
+											echo'<li> <a href="Admin/index.php">Admin Side</a></li> ';
+										}
+									?>
+									
+								
+									<li>
+										<div class="header-icons ml-5">
+											<a class="shopping-cart" href="cart.php"><i class="fas fa-shopping-cart"></i></a>
+											<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+										</div>
+
+										
+									</li>
+
+									
+								</ul>
+
+								<form class="d-flex mt-4">
+										<?php 
+											if(isset($_SESSION['user_id'])){
+											echo "<p class='text-white mr-5'> Welcome ".$_SESSION['user_id'] ." ! </p>";
+											}else {
+											echo " <a class='btn btn-outline-success' href='views/login.php'> Login | Register</a> ";
+											}
+
+										?>
+										<a class="btn btn-outline-success" name="logout" href="Actions/registerprocess.php?logout='$_SESSION[`user_id`]'">Logout</a>
+								</form>
+
+							</dvi>
 							
-								<li>
-									<div class="header-icons">
-										<a class="shopping-cart" href="cart.php
-										"><i class="fas fa-shopping-cart"></i></a>
-										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-										<a class="btn btn-outline-success" href="login.php
-										" >Login | Register</a>
-									</div>
-								</li>
-							</ul>
 						</nav>
 						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+								
 						<div class="mobile-menu"></div>
 						<!-- menu end -->
 					</div>

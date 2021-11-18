@@ -76,7 +76,7 @@ session_start();
                                     <div id="submenu-1" class="collapse submenu" style="">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="index.html">Home</a>
+                                                <a class="nav-link" href="index.php">Home</a>
                                             </li>
                                           
                                             <li class="nav-item">

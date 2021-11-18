@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,20 +60,48 @@
 						<!-- logo -->
 
 						<!-- menu start -->
-						<nav class="main-menu">
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li class="current-list-item"><a href="shop.html">Shop</a></li>
-								<li><a href="rent.html">Rent</a></li>
-								<!-- <li><a href="about.html">About</a></li></li> -->
-								<li><a href="contact.html">Contact</a></li><li>
-									<div class="header-icons">
-										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-										<a class="btn btn-outline-success" href="Login/login.php" >Login | Register</a>
-									</div>
-								</li>
-							</ul>
+						<nav class="navbar navbar-expand-lg main-menu">
+							<div class = "container-fluid">
+								<ul>
+									<li ><a href="../index.php">Home</a></li>
+									<li class="current-list-item"><a href="shop.php">Shop</a></li>
+									<li><a href="rent.php">Rent</a></li>
+									<li><a href="#">Favourite</a></li>
+									<li><a href="contact.php">Contact</a></li>
+
+									<?php 
+										if(isset($_SESSION['user_role']) == 1){
+											echo'<li><a href="Admin/index.php">Admin Side</a></li> ';
+										}
+									?>
+									
+								
+									<li>
+										<div class="header-icons ml-5">
+											<a class="shopping-cart" href="cart.php"><i class="fas fa-shopping-cart"></i></a>
+											<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+										</div>
+
+										
+									</li>
+
+									
+								</ul>
+
+								<form class="d-flex mt-4">
+										<?php 
+											if(isset($_SESSION['user_id'])){
+											echo "<p class='text-white mr-5'> Welcome ".$_SESSION['user_id'] ." ! </p>";
+											}else {
+											echo " <a class='btn btn-outline-success' href='views/login.php'> Login | Register</a> ";
+											}
+
+										?>
+										<a class="btn btn-outline-success" name="logout" href="Actions/registerprocess.php?logout='$_SESSION[`user_id`]'">Logout</a>
+								</form>
+
+							</dvi>
+							
 						</nav>
 						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 						<div class="mobile-menu"></div>

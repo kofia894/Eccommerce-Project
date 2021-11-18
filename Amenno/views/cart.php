@@ -1,3 +1,11 @@
+<?php 
+require('../Controllers/cart_controller.php');
+require ('../Settings/core.php');
+session_start();
+
+$ip_add = $_SERVER['REMOTE_ADDR'];
+$result = view_products_controller($ip_add, $_SESSION['customer_id']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,26 +18,26 @@
 	<title>Cart</title>
 
 	<!-- favicon -->
-	<!-- <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png"> -->
+	<!-- <link rel="shortcut icon" type="image/png" href="../assets/img/favicon.png"> -->
 	<!-- google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 	<!-- fontawesome -->
-	<link rel="stylesheet" href="assets/css/all.min.css">
+	<link rel="stylesheet" href="../assets/css/all.min.css">
 	<!-- bootstrap -->
-	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
 	<!-- owl carousel -->
-	<link rel="stylesheet" href="assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="../assets/css/owl.carousel.css">
 	<!-- magnific popup -->
-	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="../assets/css/magnific-popup.css">
 	<!-- animate css -->
-	<link rel="stylesheet" href="assets/css/animate.css">
+	<link rel="stylesheet" href="../assets/css/animate.css">
 	<!-- mean menu css -->
-	<link rel="stylesheet" href="assets/css/meanmenu.min.css">
+	<link rel="stylesheet" href="../assets/css/meanmenu.min.css">
 	<!-- main style -->
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/main.css">
 	<!-- responsive -->
-	<link rel="stylesheet" href="assets/css/responsive.css">
+	<link rel="stylesheet" href="../assets/css/responsive.css">
 
 </head>
 <body>
@@ -51,28 +59,55 @@
 						<!-- logo -->
 						<!-- <div class="site-logo">
 							<a href="index.html">
-								<img src="assets/img/logo.png" alt="">
+								<img src="../assets/img/logo.png" alt="">
 							</a>
 						</div> -->
 						<!-- logo -->
 
 						<!-- menu start -->
-						<nav class="main-menu">
-							<ul>
-								<li ><a href="index.html">Home</a></li>
-								<li><a href="shop.html">Shop</a></li>
-								<li><a href="shop.html">Rent</a></li>
-								<li><a href="contact.html">Contact</a></li>
-								<li><a href="#">Favourite</a></li>
-								<li class="current-list-item"><a href="cart.html">Cart</a></li>
-								<li>
-									<div class="header-icons">
-										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-										<a class="btn btn-outline-success" href="Login/login.php" >Login | Register</a>
-									</div>
-								</li>
-							</ul>
+						<nav class="navbar navbar-expand-lg main-menu">
+							<div class = "container-fluid">
+								<ul>
+									<li><a href="../index.php">Home</a></li>
+									<li><a href="shop.php">Shop</a></li>
+									<li><a href="rent.php">Rent</a></li>
+									<li><a href="favourite.php">Favourite</a></li>
+									<li><a href="contact.php">Contact</a></li>
+									<li class="current-list-item"><a href="cart.php">Cart</a></li>
+
+									<?php 
+										if(isset($_SESSION['user_role']) == 1){
+											echo'<li><a href="Admin/index.php">Admin Side</a></li> ';
+										}
+									?>
+									
+								
+									<li>
+										<div class="header-icons ml-5">
+											<a class="shopping-cart" href="cart.php"><i class="fas fa-shopping-cart"></i></a>
+											<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+										</div>
+
+										
+									</li>
+
+									
+								</ul>
+
+								<form class="d-flex mt-4">
+										<?php 
+											if(isset($_SESSION['user_id'])){
+											echo "<p class='text-white mr-5'> Welcome ".$_SESSION['user_id'] ." ! </p>";
+											}else {
+											echo " <a class='btn btn-outline-success' href='views/login.php'> Login | Register</a> ";
+											}
+
+										?>
+										<a class="btn btn-outline-success" name="logout" href="Actions/registerprocess.php?logout='$_SESSION[`user_id`]'">Logout</a>
+								</form>
+
+							</dvi>
+							
 						</nav>
 						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 						<div class="mobile-menu"></div>
@@ -135,30 +170,21 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-									<td class="product-name">Strawberry</td>
-									<td class="product-price">$85</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-2.jpg" alt=""></td>
-									<td class="product-name">Berry</td>
-									<td class="product-price">$70</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-3.jpg" alt=""></td>
-									<td class="product-name">Lemon</td>
-									<td class="product-price">$35</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
+							<?php 
+								foreach($result as $cart){
+									echo"
+										<tr class='table-body-row'>
+											<td class='product-remove'><a href='' ><i class='far fa-window-close'></i></a></td>
+											<td class='product-image'><img src='../Images/Products/imageholder.jpg' alt=''></td>
+											<td class='product-name'>$cart[product_title]</td>
+											<td class='product-price'>$cart[product_price]</td>
+											<td class='product-quantity'><input type='number'></td>
+											<td class='product-total'>1</td>
+										</tr>
+										";
+								}
+							?>
+
 							</tbody>
 						</table>
 					</div>
@@ -250,25 +276,25 @@
 
 	
 	<!-- jquery -->
-	<script src="assets/js/jquery-1.11.3.min.js"></script>
+	<script src="../assets/js/jquery-1.11.3.min.js"></script>
 	<!-- bootstrap -->
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 	<!-- count down -->
-	<script src="assets/js/jquery.countdown.js"></script>
+	<script src="../assets/js/jquery.countdown.js"></script>
 	<!-- isotope -->
-	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
 	<!-- waypoints -->
-	<script src="assets/js/waypoints.js"></script>
+	<script src="../assets/js/waypoints.js"></script>
 	<!-- owl carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
+	<script src="../assets/js/owl.carousel.min.js"></script>
 	<!-- magnific popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
+	<script src="../assets/js/jquery.magnific-popup.min.js"></script>
 	<!-- mean menu -->
-	<script src="assets/js/jquery.meanmenu.min.js"></script>
+	<script src="../assets/js/jquery.meanmenu.min.js"></script>
 	<!-- sticker js -->
-	<script src="assets/js/sticker.js"></script>
+	<script src="../assets/js/sticker.js"></script>
 	<!-- main js -->
-	<script src="assets/js/main.js"></script>
+	<script src="../assets/js/main.js"></script>
 
 </body>
 </html>

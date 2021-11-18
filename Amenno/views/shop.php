@@ -5,6 +5,11 @@ require ('../Settings/core.php');
 
 session_start(); 
 
+$ip_add = $_SERVER['REMOTE_ADDR'];
+// if(isset($_SESSION['user_id'])){
+  
+// }
+
  
 
 $products = select_all_products_controller();
@@ -72,23 +77,48 @@ $products = select_all_products_controller();
 						<!-- logo -->
 
 						<!-- menu start -->
-						<nav class="main-menu">
-							<ul>
-								<li ><a href="../index.php">Home</a></li>
-								<li class="current-list-item"><a href="shop.php">Shop</a></li>
-								<li><a href="rent.php">Rent</a></li>
-								<li><a href="#">Favourite</a></li>
-								<li><a href="contact.php">Contact</a></li>
-								<li><a href="Admin/index.php">Admin Side</a></li>
+						<nav class="navbar navbar-expand-lg main-menu">
+							<div class = "container-fluid">
+								<ul>
+									<li ><a href="../index.php">Home</a></li>
+									<li class="current-list-item"><a href="shop.php">Shop</a></li>
+									<li><a href="rent.php">Rent</a></li>
+									<li><a href="favourite.php">Favourite</a></li>
+									<li><a href="contact.php">Contact</a></li>
+
+									<?php 
+										if(isset($_SESSION['user_role']) == 1){
+											echo'<li><a href="Admin/index.php">Admin Side</a></li> ';
+										}
+									?>
+									
+								
+									<li>
+										<div class="header-icons ml-5">
+											<a class="shopping-cart" href="cart.php"><i class="fas fa-shopping-cart"></i></a>
+											<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+										</div>
+
+										
+									</li>
+
+									
+								</ul>
+
+								<form class="d-flex mt-4">
+										<?php 
+											if(isset($_SESSION['user_id'])){
+											echo "<p class='text-white mr-5'> Welcome ".$_SESSION['user_id'] ." ! </p>";
+											}else {
+											echo " <a class='btn btn-outline-success' href='views/login.php'> Login | Register</a> ";
+											}
+
+										?>
+										<a class="btn btn-outline-success" name="logout" href="Actions/registerprocess.php?logout='$_SESSION[`user_id`]'">Logout</a>
+								</form>
+
+							</dvi>
 							
-								<li>
-									<div class="header-icons">
-										<a class="shopping-cart" href="cart.php"><i class="fas fa-shopping-cart"></i></a>
-										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-										<a class="btn btn-outline-success" href="login.php" >Login | Register</a>
-									</div>
-								</li>
-							</ul>
 						</nav>
 						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 						<div class="mobile-menu"></div>
@@ -171,7 +201,7 @@ $products = select_all_products_controller();
 												<div class = 'row'> 
 
 													<div class='col cart-button'style=' margin-bottom: -50%'>
-														<form  action='../Actions/Add_to_cart.php' method='post' class='d-flex'>
+														<form  action='../Actions/add_to_cart.php' method='post' class='d-flex'>
 															<input type='hidden' name='p_id' value =". $product['product_id'].">
 															<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
 															<button class='btn btn-success' name='add_cart' type='submit'>Add to cart</button>
@@ -180,8 +210,10 @@ $products = select_all_products_controller();
 													</div>
 
 													<div class='col fav ' style='margin-left : 80%; margin-bottom: -50%'>
-														<form action='../Actions/Add_to_favourite.php' method='post' class='d-flex'> 
-															<a  href='update_product_page.php?id=$product[product_id]' class= 'btn btn-outline-danger btn-circle btn-md far fa-heart'> </a>
+														<form action='../Actions/add_to_favourite.php' method='post' class='d-flex'> 
+															<input type='hidden' name='p_id' value =". $product['product_id'].">
+															<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
+															<button class= 'btn btn-outline-danger btn-circle btn-md far fa-heart' name = 'add_fav'> </button>
 														</form>
 													</div>
 

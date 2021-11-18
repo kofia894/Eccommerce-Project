@@ -11,6 +11,12 @@ class Product extends Connection{
 		return $this->query("insert into products(product_cat,product_brand,product_title, product_price, product_desc,product_keywords) 
 								values('$prod_cat','$prod_brand','$title', '$price', '$desc', '$keywords')");
 	}
+
+	function add_to_favourite($prod_id,$ip_add,$c_id){
+		// return true or false
+		return $this->query("insert into favourite(p_id,ip_add,c_id) 
+								values('$prod_id','$ip_add','$c_id')");
+	}
 	function add_brand($brand){
 		// return true or false
 		return $this->query("insert into brands(brand_name) 
