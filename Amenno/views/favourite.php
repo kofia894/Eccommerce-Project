@@ -4,9 +4,9 @@ require ('../Settings/core.php');
 session_start();
 
 $ip_add = $_SERVER['REMOTE_ADDR'];
-if(isset($_SESSION['custommer_id'])){
+
 $result = view_favourite_controller($ip_add, $_SESSION['customer_id']);
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -163,7 +163,7 @@ $result = view_favourite_controller($ip_add, $_SESSION['customer_id']);
 				
 					<div class=" container single-product">
 					<?php 
-						if(isset($_SESSION['customer_id'])){
+						
 							foreach($result as $fav){
 								echo"
 								<div class='card mb-3' style='max-width: 100%;'>
@@ -193,7 +193,7 @@ $result = view_favourite_controller($ip_add, $_SESSION['customer_id']);
 	
 							}
 
-						}
+						
 						
 					?>
 					</div>

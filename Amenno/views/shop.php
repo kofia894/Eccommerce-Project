@@ -198,7 +198,8 @@ $products = select_all_products_controller();
 
 											<div class='container ' style= 'margin-top:50px';>
 
-												<div class = 'row'> 
+												
+													<div class = 'row'> 
 
 													<div class='col cart-button'style=' margin-bottom: -50%'>
 														<form  action='../Actions/add_to_cart.php' method='post' class='d-flex'>
@@ -218,6 +219,9 @@ $products = select_all_products_controller();
 													</div>
 
 												</div>
+
+											
+												
 					
 												
 												

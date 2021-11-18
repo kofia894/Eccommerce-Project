@@ -4,7 +4,10 @@ require ('../Settings/core.php');
 session_start();
 
 $ip_add = $_SERVER['REMOTE_ADDR'];
-$result = view_products_controller($ip_add, $_SESSION['customer_id']);
+if(isset($_SESSION['customer_id'])){
+	$result = view_products_controller($ip_add, $_SESSION['customer_id']);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +102,7 @@ $result = view_products_controller($ip_add, $_SESSION['customer_id']);
 											if(isset($_SESSION['user_id'])){
 											echo "<p class='text-white mr-5'> Welcome ".$_SESSION['user_id'] ." ! </p>";
 											}else {
-											echo " <a class='btn btn-outline-success' href='views/login.php'> Login | Register</a> ";
+											echo " <a class='btn btn-outline-success' href='login.php'> Login | Register</a> ";
 											}
 
 										?>
@@ -171,6 +174,7 @@ $result = view_products_controller($ip_add, $_SESSION['customer_id']);
 							</thead>
 							<tbody>
 							<?php 
+							if(isset($_SESSION['customer_id'])){
 								foreach($result as $cart){
 									echo"
 										<tr class='table-body-row'>
@@ -183,6 +187,9 @@ $result = view_products_controller($ip_add, $_SESSION['customer_id']);
 										</tr>
 										";
 								}
+
+							}
+								
 							?>
 
 							</tbody>
