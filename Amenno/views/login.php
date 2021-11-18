@@ -37,7 +37,7 @@
     <body style="background: #051922;">
     <div class="login-form">
         <form action="../Actions/registerprocess.php" method="post" id="login-form">
-        <a class="btn btn-outline-success " href="index.php" >Back</a>
+        <a class="btn btn-outline-success " href="../index.php" >Back</a>
             <h2 class="text-center">Log in</h2> 
             
             <div class="row no-gutters"><div id="error-block-email" class="error-block-message col-md-8 offset-md-4 text-left"></div></div>
