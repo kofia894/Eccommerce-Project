@@ -1,5 +1,5 @@
 <?php 
-require('../Controllers/favourite_controller.php');
+require('../Controllers/product_controller.php');
 require ('../Settings/core.php');
 session_start();
 
@@ -25,7 +25,7 @@ session_start();
 	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>Favourites</title>
+	<title>Search Results</title>
 
 	<!-- favicon -->
 	<!-- <link rel="shortcut icon" type="image/png" href="../assets/img/favicon.png"> -->
@@ -154,7 +154,7 @@ session_start();
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<h1>Favourites</h1>
+						<h1>Search Results</h1>
 					</div>
 				</div>
 			</div>
@@ -171,34 +171,43 @@ session_start();
 				
 					<div class=" container single-product">
 					<?php 
-						foreach($result as $fav){
-							echo"
-							<div class='card mb-3' style='max-width: 100%;'>
-								<div class='row g-0'>
-									<div class='col-md-4'>
-									<img src='../Images/Products/imageholder.jpg' class='img-fluid rounded-start' alt='...'>
-									</div>
-									<div class='col-md-7'>
-										<div class='card-body'>
-											<h5 class='card-title'>$fav[product_title]</h5>
-											<p class='card-text'>$fav[product_desc]</p>
-											<p class='card-text'><small class='text-muted'>Last updated 3 mins ago</small></p>
-										</div>
-									</div>
-									<div class='col'>
+                     if(isset($result)){
+                            foreach($result as $product){
+                                echo"
+                                <div class='card mb-3' style='max-width: 100%;'>
+                                    <div class='row g-0'>
+                                        <div class='col-md-4'>
+                                        <img src='../Images/Products/imageholder.jpg' class='img-fluid rounded-start' alt='...'>
+                                        </div>
+                                        <div class='col-md-7'>
+                                            <div class='card-body'>
+                                                <h5 class='card-title'>$product[product_title]</h5>
+                                                <p class='card-text'>$product[product_desc]</p>
+                                                <p class='card-text'>$product[product_price]</p>
+                                                <p class='card-text'><small class='text-muted'>Last updated 3 mins ago</small></p>
+                                            </div>
+                                        </div>
+                                        <div class='col'>
 
-										<form action='../Actions/add_to_favourite.php' method='post' class='d-flex'>
-											<input type='hidden' name='p_id' value =". $fav['product_id'].">
-											<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
-											<button class= 'btn btn-outline-danger btn-circle btn-md fas fa-trash-alt' style='margin-top:90%;' name = 'add_fav'> </button>
-										</form>
+                                            <form action='../Actions/add_to_favourite.php' method='post' class='d-flex'>
+                                                <input type='hidden' name='p_id' value =". $product['product_id'].">
+                                                <input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
+                                                <button class= 'btn btn-outline-danger btn-circle btn-md fas fa-trash-alt' style='margin-top:90%;' name = 'add_fav'> </button>
+                                            </form>
 
-									</div>
-								</div>
-							</div>
-								";
+                                        </div>
+                                    </div>
+                                </div>
+                                    ";
 
-						}
+                            }
+                        }else 
+                            echo " 
+                            <div class='container mt-5'>
+                            <h5> Results Not Found </h5>
+                            </div>
+                            
+                            ";
 					?>
 					</div>
 			</div>
