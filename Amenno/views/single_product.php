@@ -1,5 +1,13 @@
 <?php 
+
+require('../Controllers/product_controller.php');
+require ('../Settings/core.php');
 session_start();
+
+if (isset($_GET['id'])) {
+    $sel_prod = select_one_product_controller($_GET['id']);
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,26 +21,26 @@ session_start();
 	<title>Single Product</title>
 
 	<!-- favicon -->
-	<!-- <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png"> -->
+	<!-- <link rel="shortcut icon" type="image/png" href="../assets/img/favicon.png"> -->
 	<!-- google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 	<!-- fontawesome -->
-	<link rel="stylesheet" href="assets/css/all.min.css">
+	<link rel="stylesheet" href="../assets/css/all.min.css">
 	<!-- bootstrap -->
-	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
 	<!-- owl carousel -->
-	<link rel="stylesheet" href="assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="../assets/css/owl.carousel.css">
 	<!-- magnific popup -->
-	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="../assets/css/magnific-popup.css">
 	<!-- animate css -->
-	<link rel="stylesheet" href="assets/css/animate.css">
+	<link rel="stylesheet" href="../assets/css/animate.css">
 	<!-- mean menu css -->
-	<link rel="stylesheet" href="assets/css/meanmenu.min.css">
+	<link rel="stylesheet" href="../assets/css/meanmenu.min.css">
 	<!-- main style -->
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/main.css">
 	<!-- responsive -->
-	<link rel="stylesheet" href="assets/css/responsive.css">
+	<link rel="stylesheet" href="../assets/css/responsive.css">
 
 </head>
 <body>
@@ -54,7 +62,7 @@ session_start();
 						<!-- logo -->
 						<!-- <div class="site-logo">
 							<a href="index.html">
-								<img src="assets/img/logo.png" alt="">
+								<img src="../assets/img/logo.png" alt="">
 							</a>
 						</div> -->
 						<!-- logo -->
@@ -141,7 +149,7 @@ session_start();
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>See more Details</p>
-						<h1> Product Name</h1>
+						<h1> View Product</h1>
 					</div>
 				</div>
 			</div>
@@ -153,36 +161,31 @@ session_start();
 	<div class="single-product mt-150 mb-150">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-5">
-					<div class="single-product-img">
-						<img src="assets/img/products/product-img-5.jpg" alt="">
-					</div>
-				</div>
-				<div class="col-md-7">
-					<div class="single-product-content">
-						<h3>Mixer</h3>
-						<p class="single-product-pricing"><span></span> $50</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi! Tempora, earum.</p>
-						<div class="single-product-form">
-							<form action="index.html">
-								<input type="number" placeholder="0">
-							</form>
-							<div class="d-flex">
-								<a href="cart.html" class="cart-btn mr-5"><i class="fas fa-shopping-cart "></i> Add to Cart</a>
-								<a href="cart.html" class= "btn btn-outline-danger btn-circle btn-md far fa-heart "> </a>
-							  </div>
-							<p><strong>Categories: </strong> Media</p>
+				<div class=" container single product mt-5">
+	
+
+					<div class="card mb-3" style="height: 100%;">
+						<div class="row g-0">
+							<div class="col-md-4">
+								<img src="../Images/Products/imageholder.jpg" class="img-fluid rounded-start" alt="...">
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+										<h5 class="card-title"><?php if (isset($_GET['id'])) {echo $sel_prod['product_title'];}?></h5>
+										<p class="card-text"><?php if (isset($_GET['id'])) {echo $sel_prod['brand_name'];}?></p>
+										<p class="card-text"><?php if (isset($_GET['id'])) {echo $sel_prod['cat_name'];}?></p>
+										<p class="card-text"><?php if (isset($_GET['id'])) {echo $sel_prod['product_price'];}?></p>
+										<p class="card-text"><?php if (isset($_GET['id'])) {echo $sel_prod['product_desc'];}?></p>
+										<p class="card-text"><?php if (isset($_GET['id'])) {echo $sel_prod['product_keywords'];}?></p>
+										<p class="card-text"><small class="text-muted"></small></p>
+										<a href="#" class="btn btn-primary">Add to Cart</a>
+									
+								</div>
+							</div>
 						</div>
-						<h4>Share:</h4>
-						<ul class="product-share">
-							<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href=""><i class="fab fa-twitter"></i></a></li>
-							<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
-							<li><a href=""><i class="fab fa-linkedin"></i></a></li>
-						</ul>
 					</div>
+					
 				</div>
-			</div>
 		</div>
 	</div>
 	<!-- end single product -->
@@ -230,25 +233,25 @@ session_start();
 
 	
 	<!-- jquery -->
-	<script src="assets/js/jquery-1.11.3.min.js"></script>
+	<script src="../assets/js/jquery-1.11.3.min.js"></script>
 	<!-- bootstrap -->
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 	<!-- count down -->
-	<script src="assets/js/jquery.countdown.js"></script>
+	<script src="../assets/js/jquery.countdown.js"></script>
 	<!-- isotope -->
-	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
 	<!-- waypoints -->
-	<script src="assets/js/waypoints.js"></script>
+	<script src="../assets/js/waypoints.js"></script>
 	<!-- owl carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
+	<script src="../assets/js/owl.carousel.min.js"></script>
 	<!-- magnific popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
+	<script src="../assets/js/jquery.magnific-popup.min.js"></script>
 	<!-- mean menu -->
-	<script src="assets/js/jquery.meanmenu.min.js"></script>
+	<script src="../assets/js/jquery.meanmenu.min.js"></script>
 	<!-- sticker js -->
-	<script src="assets/js/sticker.js"></script>
+	<script src="../assets/js/sticker.js"></script>
 	<!-- main js -->
-	<script src="assets/js/main.js"></script>
+	<script src="../assets/js/main.js"></script>
 
 </body>
 </html>

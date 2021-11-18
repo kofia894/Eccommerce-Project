@@ -82,12 +82,13 @@ $products = select_all_products_controller();
 								<ul>
 									<li ><a href="../index.php">Home</a></li>
 									<li class="current-list-item"><a href="shop.php">Shop</a></li>
+									<li><a href="rent.php">Rent</a></li>
 									<li><a href="favourite.php">Favourite</a></li>
 									<li><a href="contact.php">Contact</a></li>
 
 									<?php 
 										if(isset($_SESSION['user_role']) == 1){
-											echo'<li><a href="../Admin/index.php">Admin Side</a></li> ';
+											echo'<li><a href="Admin/index.php">Admin Side</a></li> ';
 										}
 									?>
 									
