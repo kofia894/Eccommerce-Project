@@ -108,6 +108,30 @@ if(isset($_POST['update_prod'])){
 
 }
 
+if(isset($_POST['delete_prod'])){
+    // delete the name, description and quantity from the form submission
+    $id = $_POST['p_id'];
+    
+
+    echo $id;
+
+    // call the delete_product_controller function: return true or false
+    $result =   delete_product_controller($id);
+
+
+    if($result === true){
+        header('Location: ../Admin/product_list.php');
+        
+        // header('Location: ');
+    } 
+    else {
+        // header('Location: ../View/add_product_page.php');
+        echo '<script>alert("Unable to insert")</script>';
+        
+    }
+
+}
+
 
 
 

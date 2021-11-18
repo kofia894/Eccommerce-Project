@@ -162,12 +162,13 @@ session_start();
                                                             <p class='card-text'>Price: $product[product_price]</p>
                                                             <p class='card-text'>ID: $product[product_id]</p>
                                                             <div class='d-flex justify_content_between'>
-                                                                <form  action='../Actions/Add_to_cart.php' method='post' class='d-flex'>
+                                                                <form  action='../Actions/Add_product.php' method='post' class='d-flex'>
                                                                     <input type='hidden' name='p_id' value =". $product['product_id'].">
                                                                     <input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
-                                                                   
+                                                                    <a class = 'btn btn-danger' name = 'delete_prod' >Delete</a>
                                                                 </form>
                                                                 <a class = 'mx-4' href='updateproduct.php?id=$product[product_id]'>Update</a>
+                                                                
                                                                 <a class = 'mx-4' href='single_product.php?id=$product[product_id]'>View Product</a>
                                                             </div>
                                                 
