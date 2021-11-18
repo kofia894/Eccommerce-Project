@@ -93,7 +93,7 @@ session_start();
 											if(isset($_SESSION['user_id'])){
 											echo "<p class='text-white mr-5'> Welcome ".$_SESSION['user_id'] ." ! </p>";
 											}else {
-											echo " <a class='btn btn-outline-success' href='views/login.php'> Login | Register</a> ";
+											echo " <a class='btn btn-outline-success' href='login.php'> Login | Register</a> ";
 											}
 
 										?>

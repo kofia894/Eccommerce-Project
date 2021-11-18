@@ -110,11 +110,11 @@ $products = select_all_products_controller();
 											if(isset($_SESSION['user_id'])){
 											echo "<p class='text-white mr-5'> Welcome ".$_SESSION['user_id'] ." ! </p>";
 											}else {
-											echo " <a class='btn btn-outline-success' href='views/login.php'> Login | Register</a> ";
+											echo " <a class='btn btn-outline-success' href='login.php'> Login | Register</a> ";
 											}
 
 										?>
-										<a class="btn btn-outline-success" name="logout" href="Actions/registerprocess.php?logout='$_SESSION[`user_id`]'">Logout</a>
+										<a class="btn btn-outline-success" name="logout" href="../Actions/registerprocess.php?logout='$_SESSION[`user_id`]'">Logout</a>
 								</form>
 
 							</dvi>
