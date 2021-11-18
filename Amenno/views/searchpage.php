@@ -138,8 +138,10 @@ session_start();
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
 							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
+							<form  action="searchpage.php" method="post" class="d-flex">
+								<input type="text" name="search_word" placeholder="Keywords">
+								<button type="submit" name="search_button">Search <i class="fas fa-search"></i></button>
+							</form>
 						</div>
 					</div>
 				</div>
