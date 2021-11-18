@@ -24,6 +24,8 @@ if(isset($_POST['add_user'])){
         header('Location: ../views/login.php');
     } 
     else {
+        var_dump($result);
+        var_dump($name);
         echo "Registration  failed";
         // header('Location: ../views/register.php');
         echo '<script>alert("Login failed")</script>';
