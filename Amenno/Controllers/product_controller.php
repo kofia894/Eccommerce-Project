@@ -3,11 +3,11 @@
 
 require('../Classes/product_class.php');
 
-function add_product_controller($prod_cat,$prod_brand,$title, $price, $desc,  $keywords){
+function add_product_controller($prod_cat,$prod_brand,$title, $price, $desc,$image,  $keywords){
     // create an instance of the Product class
     $product_instance = new Product();
     // call the method from the class
-    return $product_instance->add_product($prod_cat,$prod_brand,$title, $price, $desc, $keywords);
+    return $product_instance->add_product($prod_cat,$prod_brand,$title, $price, $desc, $image,$keywords);
 
 }
 

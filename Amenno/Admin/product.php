@@ -142,7 +142,7 @@ session_start();
                             </div>
                             <div class="card-body">
                                 <div class=" brand-form">
-                                    <form action="../Actions/add_product.php" method="post" id="product-form">
+                                    <form action="../Actions/add_product.php" method="post" id="product-form" enctype="multipart/form-data">
                                            
                                         <?php 
 
@@ -192,7 +192,7 @@ session_start();
 
                                             <div class="container form-group">
                                             <label>Product Image </label>
-                                            <input type="file" name="product_image" id="image" accept="image/*">
+                                            <input type="file" name="product_image" id="image" >
                                             </div>
                                             
                             
