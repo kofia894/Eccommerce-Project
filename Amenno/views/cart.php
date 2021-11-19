@@ -6,6 +6,7 @@ session_start();
 $ip_add = $_SERVER['REMOTE_ADDR'];
 if(isset($_SESSION['customer_id'])){
 	$result = view_products_controller($ip_add, $_SESSION['customer_id']);
+	$total =  sum_price_controller($ip_add,$_SESSION['customer_id']);
 }
 
 ?>
@@ -73,7 +74,11 @@ if(isset($_SESSION['customer_id'])){
 								<ul>
 									<li><a href="../index.php">Home</a></li>
 									<li><a href="shop.php">Shop</a></li>
-									<li><a href="favourite.php">Favourite</a></li>
+									<?php 
+										if(isset($_SESSION['user_id']) == 1){
+											echo'<li><a href="favourite.php">Favourite</a></li> ';
+										}
+									?>
 									<li><a href="contact.php">Contact</a></li>
 									<li class="current-list-item"><a href="cart.php">Cart</a></li>
 
@@ -170,21 +175,38 @@ if(isset($_SESSION['customer_id'])){
 									<th class="product-name">Name</th>
 									<th class="product-price">Price</th>
 									<th class="product-quantity">Quantity</th>
-									<th class="product-total">Total</th>
+									<th class="product-quantity">Total</th>
+								
 								</tr>
 							</thead>
 							<tbody>
 							<?php 
 							if(isset($_SESSION['customer_id'])){
 								foreach($result as $cart){
+									$sum = $cart['qty'] * $cart['product_price'];
 									echo"
 										<tr class='table-body-row'>
-											<td class='product-remove'><a href='' ><i class='far fa-window-close'></i></a></td>
+
+										<form action = ../Actions/add_to_cart.php  method='post'>
+											<input type='hidden' name='p_id' value =". $cart['product_id'].">
+											<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
+											<td class='product-remove'><button class='btn btn-outline-danger text-white' name='del_cart'><a> <i class='fas fa-trash-alt'></i></a> </button></td>
+										</form>
 											<td class='product-image'><img src='../Images/Products/imageholder.jpg' alt=''></td>
 											<td class='product-name'>$cart[product_title]</td>
 											<td class='product-price'>$cart[product_price]</td>
-											<td class='product-quantity'><input type='number'></td>
-											<td class='product-total'>1</td>
+											<td class='product-quantity'>
+												<form  action='../Actions/manage_quantity_cart.php' method='post' class='d-flex ml-4'>
+												<input type='hidden' name='p_id' value =". $cart['product_id'].">
+												<input type='hidden' name='c_id' value =". $cart['c_id'].">
+												<input type='number' name='p_qty' value =". $cart['qty'].">
+												<button class='btn btn-primary ml-4' name='update_qty' type='submit'>Update</button>
+										  </form>
+											</td>
+											<td>  
+											<p>$sum</p>
+											</td>
+											
 										</tr>
 										";
 								}
@@ -210,15 +232,36 @@ if(isset($_SESSION['customer_id'])){
 							<tbody>
 								<tr class="total-data">
 									<td><strong>Subtotal: </strong></td>
-									<td>$500</td>
+									
+									<?php
+											foreach($total as $tot){
+												echo " 
+													<td>  $tot[total]</td> 
+
+												"; 
+
+											}
+
+										?>
+								
 								</tr>
-								<tr class="total-data">
-									<td><strong>Shipping: </strong></td>
-									<td>$45</td>
-								</tr>
+								
 								<tr class="total-data">
 									<td><strong>Total: </strong></td>
-									<td>$545</td>
+									<?php 
+
+									if(isset($_SESSION['customer_id'])){
+										$sum2 = 0;
+										foreach($result as $cart){
+											$sum2 = $sum2 + ($cart['qty'] * $cart['product_price']);
+										}
+										echo"<td>GHS: $sum2 </td>";
+									}
+
+										
+									
+									?>
+									
 								</tr>
 							</tbody>
 						</table>

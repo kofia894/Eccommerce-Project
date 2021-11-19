@@ -7,6 +7,7 @@ $ip_add = $_SERVER['REMOTE_ADDR'];
 
 $result = view_favourite_controller($ip_add, $_SESSION['customer_id']);
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -184,7 +185,7 @@ $result = view_favourite_controller($ip_add, $_SESSION['customer_id']);
 											<form action='../Actions/add_to_favourite.php' method='post' class='d-flex'>
 												<input type='hidden' name='p_id' value =". $fav['product_id'].">
 												<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
-												<button class= 'btn btn-outline-danger btn-circle btn-md fas fa-trash-alt' style='margin-top:90%;' name = 'add_fav'> </button>
+												<button class= 'btn btn-outline-danger btn-circle btn-md fas fa-trash-alt' style='margin-top:90%;' name = 'delete_fav'> </button>
 											</form>
 	
 										</div>

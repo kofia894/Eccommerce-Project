@@ -117,6 +117,12 @@ function search_product_controller($word){
 
 }
 
+function pick_random_controller(){
+    $product_instance = new Product();
+    return $product_instance->pick_random();
+
+}
+
 
 
 

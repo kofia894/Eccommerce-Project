@@ -32,6 +32,10 @@ class Cart extends Connection{
 																where ip_add='$ip_add' and c_id='$c_id'");
 		// return $this->query("Select SUM() as total from cart where c_id = '$c_id'");
 	}
+
+	function check_duplicate($product_id,$customer_id){
+		return $this->fetchone("select * from cart where p_id = '$product_id' and c_id = '$customer_id'");
+	}
 	
 
 

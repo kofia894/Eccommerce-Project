@@ -21,6 +21,10 @@ class Favourite extends Connection{
 		return $this->query("delete from favourite where p_id = '$id'");
 	}
 
+	function duplicates_favourite($product_id,$customer_id){
+		return $this->fetchone("select * from favourite where p_id = '$product_id' and c_id = '$customer_id'");
+	}
+
 
 
 	

@@ -81,7 +81,11 @@ session_start();
 									<li ><a href="../index.php">Home</a></li>
 									<li><a href="shop.php">Shop</a></li>
 									<li><a href="rent.php">Rent</a></li>
-									<li class="current-list-item" ><a href="favourite.php">Favourite</a></li>
+									<?php 
+										if(isset($_SESSION['user_id']) == 1){
+											echo'<li><a href="favourite.php">Favourite</a></li> ';
+										}
+									?>
 									<li><a href="contact.php">Contact</a></li>
 
 									<?php 
@@ -175,32 +179,53 @@ session_start();
 					<?php 
                      if(isset($result)){
                             foreach($result as $product){
-                                echo"
-                                <div class='card mb-3' style='max-width: 100%;'>
-                                    <div class='row g-0'>
-                                        <div class='col-md-4'>
-                                        <img src='../Images/Products/imageholder.jpg' class='img-fluid rounded-start' alt='...'>
-                                        </div>
-                                        <div class='col-md-7'>
-                                            <div class='card-body'>
-                                                <h5 class='card-title'>$product[product_title]</h5>
-                                                <p class='card-text'>$product[product_desc]</p>
-                                                <p class='card-text'>$product[product_price]</p>
-                                                <p class='card-text'><small class='text-muted'>Last updated 3 mins ago</small></p>
-                                            </div>
-                                        </div>
-                                        <div class='col'>
-
-                                            <form action='../Actions/add_to_favourite.php' method='post' class='d-flex'>
-                                                <input type='hidden' name='p_id' value =". $product['product_id'].">
-                                                <input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
-                                                <button class= 'btn btn-outline-danger btn-circle btn-md fas fa-trash-alt' style='margin-top:90%;' name = 'add_fav'> </button>
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                    ";
+								echo" 
+								<div class='col mt-5'>
+									<div class='card d-flex col-sm-3 text-center  mb-5 h-100' style='max-width: 30%;'> 
+										<a  href='single_product.php?id=$product[product_id]' ><img src='../Images/Products/imageholder.jpg' class='card-img-top '  alt='...'></a>
+										<a  href='single_product.php?id=$product[product_id]'> 
+											<div class='card-body  align-items-end' >
+												<h5 class='card-title'>Title: $product[product_title]</h5>
+												<p class='card-text'>Price: $product[product_price]</p>
+												<p class='card-text'>ID: $product[product_id]</p>
+	
+												<div class='container ' style= 'margin-top:50px';>
+	
+													
+														<div class = 'row'> 
+	
+														<div class='col cart-button'style=' margin-bottom: -10%'>
+															<form  action='../Actions/add_to_cart.php' method='post' class='d-flex'>
+																<input type='hidden' name='p_id' value =". $product['product_id'].">
+																<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
+																<button class='btn btn-success' name='add_cart' type='submit'>Add to cart</button>
+															</form>
+													
+														</div>
+	
+														<div class='col fav ' style='margin-left : 80%; margin-bottom: 0%'>
+															<form action='../Actions/add_to_favourite.php' method='post' class='d-flex'> 
+																<input type='hidden' name='p_id' value =". $product['product_id'].">
+																<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
+																<button class= 'btn btn-outline-danger btn-circle btn-md far fa-heart' name = 'add_fav'> </button>
+															</form>
+														</div>
+	
+													</div>
+	
+												
+													
+						
+													
+													
+												</div>
+									
+											</div>
+										</a>
+									</div>
+								</div>
+									
+								";
 
                             }
                         }else 

@@ -12,6 +12,10 @@ class Product extends Connection{
 								values('$prod_cat','$prod_brand','$title', '$price', '$desc', '$keywords')");
 	}
 
+	function check_dup($prod_id){
+
+	}
+
 	function add_to_favourite($prod_id,$ip_add,$c_id){
 		// return true or false
 		return $this->query("insert into favourite(p_id,ip_add,c_id) 
@@ -92,6 +96,12 @@ class Product extends Connection{
         // return associative array or false
         return $this->fetch("Select * From products where product_title Like '%$word%'  or product_keywords Like '%$word%' ");
     }
+
+	function pick_random()
+	{
+		return $this->fetch("select * from products order by rand() limit by 3");	
+
+	}
 
 	
 

@@ -1,5 +1,19 @@
 <?php 
-session_start();
+session_start(); 
+
+
+
+// function pick_random()
+// 	{
+// 		return fetch("select * from products order by rand() limit by 3");	
+
+// 	}
+ 
+
+// $feature = pick_random();
+// var_dump($feature);		
+
+
 
 
 ?>
@@ -71,7 +85,14 @@ session_start();
 								<ul>
 									<li class="current-list-item"><a href="index.php">Home</a></li>
 									<li><a href="views/shop.php">Shop</a></li>
-									<li><a href="views/favourite.php">Favourite</a></li>
+
+									<?php 
+										if(isset($_SESSION['user_id']) == 1){
+											echo'<li><a href="views/favourite.php">Favourite</a></li> ';
+										}
+									?>
+
+									
 									<li><a href="views/contact.php">Contact</a></li>
 
 									<?php 
@@ -264,49 +285,64 @@ session_start();
 				</div>
 			</div>
 
-			<div class="row d-flex justify-content-between">
-				<div class="card col-lg-3 col-md-6 text-center d-flex" style="height: 18rem;">
-					<img src="assets/img/products/product-img-1.jpg" class="card-img-top " alt="...">
-					<div class="card-body  align-items-end">
-					  <h5 class="card-title">Guitar</h5>
-					  <p class="card-text">85$</p>
-					  <div class="d-flex icons justify-content-between">
-						<a href="cart.php
-						" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						<a href="cart.php
-						" class= "btn btn-outline-danger btn-circle btn-md far fa-heart"> </a>
-					  </div>
-					  
-					</div>
-				</div>
+			<div class="row product-lists">
+				<div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+			
+					<?php 
+					foreach($feature as $product){
+						
+						echo" 
+							<div class='col mt-5'>
+								<div class='card d-flex col-sm-3 text-center  mb-5 h-100' style='max-width: 540px;'> 
+									<a  href='single_product.php?id=$product[product_id]' ><img src='Images/Products/imageholder.jpg' class='card-img-top '  alt='...'></a>
+									<a  href='single_product.php?id=$product[product_id]'> 
+										<div class='card-body  align-items-end' >
+											<h5 class='card-title'>Title: $product[product_title]</h5>
+											<p class='card-text'>Price: GHS$product[product_price]</p>
+											<p class='card-text'>Description: $product[product_desc]</p>
 
-				<div class="card col-lg-3 col-md-6 text-center" style="width: 18rem;">
-					<img src="assets/img/products/product-img-2.jpg" class="card-img-top" alt="...">
-					<div class="card-body ">
-					  <h5 class="card-title">Saxophone</h5>
-					  <p class="card-text">85$</p>
-					  <div class="d-flex icons justify-content-between">
-						<a href="cart.php
-						" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						<a href="cart.php
-						" class= "btn btn-outline-danger btn-circle btn-md far fa-heart"> </a>
-					  </div>
-					</div>
-				</div>
+											<div class='container ' style= 'margin-top:50px';>
 
-				<div class="card col-lg-3 col-md-6 text-center" style="width: 18rem;">
-					<img src="assets/img/products/product-img-3.jpg" class="card-img-top" alt="...">
-					<div class="card-body ">
-					  <h5 class="card-title text-center">Drumset</h5>
-					  <p class="card-text text-center">85$</p>
-					  <div class="d-flex icons justify-content-between">
-						<a href="cart.php
-						" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						<a href="cart.php
-						" class= "btn btn-outline-danger btn-circle btn-md far fa-heart"> </a>
-					  </div>
-					</div>
+												
+													<div class = 'row'> 
+
+													<div class='col cart-button'style=' margin-bottom: -50%'>
+														<form  action='../Actions/add_to_cart.php' method='post' class='d-flex'>
+															<input type='hidden' name='p_id' value =". $product['product_id'].">
+															<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
+															<button class='btn btn-success' name='add_cart' type='submit'>Add to cart</button>
+														</form>
+												
+													</div>
+
+													<div class='col fav ' style='margin-left : 80%; margin-bottom: -50%'>
+														<form action='../Actions/add_to_favourite.php' method='post' class='d-flex'> 
+															<input type='hidden' name='p_id' value =". $product['product_id'].">
+															<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
+															<button class= 'btn btn-outline-danger btn-circle btn-md far fa-heart' name = 'add_fav'> </button>
+														</form>
+													</div>
+
+												</div>
+
+											
+												
+					
+												
+												
+											</div>
+								
+										</div>
+									</a>
+								</div>
+							</div>
+								
+							";
+					?>    
+						<?php } ?>
+
 				</div>
+						
 			</div>
 		</div>
 	</div>

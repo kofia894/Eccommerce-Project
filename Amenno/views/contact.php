@@ -65,7 +65,11 @@ session_start();
 								<ul>
 									<li ><a href="../index.php">Home</a></li>
 									<li><a href="shop.php">Shop</a></li>
-									<li><a href="favourite.php">Favourite</a></li>
+									<?php 
+										if(isset($_SESSION['user_id']) == 1){
+											echo'<li><a href="favourite.php">Favourite</a></li> ';
+										}
+									?>
 									<li class="current-list-item" ><a href="contact.php">Contact</a></li>
 
 									<?php 

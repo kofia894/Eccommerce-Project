@@ -44,6 +44,12 @@ function sum_price_controller($ip_add,$c_id){
 
 }
 
+function check_duplicate_controller($product_id,$customer_id){
+    $cart_instance = new Cart();
+    //method is called from the cart class
+    return $cart_instance->check_duplicate($product_id,$customer_id);
+}
+
 
 
 

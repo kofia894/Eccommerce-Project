@@ -82,13 +82,17 @@ $products = select_all_products_controller();
 								<ul>
 									<li ><a href="../index.php">Home</a></li>
 									<li class="current-list-item"><a href="shop.php">Shop</a></li>
-									<li><a href="rent.php">Rent</a></li>
-									<li><a href="favourite.php">Favourite</a></li>
+								
+									<?php 
+										if(isset($_SESSION['user_id']) == 1){
+											echo'<li><a href="favourite.php">Favourite</a></li> ';
+										}
+									?>
 									<li><a href="contact.php">Contact</a></li>
 
 									<?php 
 										if(isset($_SESSION['user_role']) == 1){
-											echo'<li><a href="Admin/index.php">Admin Side</a></li> ';
+											echo'<li><a href="../Admin/index.php">Admin Side</a></li> ';
 										}
 									?>
 									
@@ -196,7 +200,7 @@ $products = select_all_products_controller();
 										<div class='card-body  align-items-end' >
 											<h5 class='card-title'>Title: $product[product_title]</h5>
 											<p class='card-text'>Price: $product[product_price]</p>
-											<p class='card-text'>ID: $product[product_id]</p>
+											<p class='card-text'>Description: $product[product_desc]</p>
 
 											<div class='container ' style= 'margin-top:50px';>
 
@@ -234,7 +238,7 @@ $products = select_all_products_controller();
 								</div>
 							</div>
 								
-							"
+							";
 					?>    
 						<?php } ?>
 
