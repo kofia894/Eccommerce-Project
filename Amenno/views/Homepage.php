@@ -284,11 +284,16 @@ $feature = pick_random_controller();
 
                     if (isset($_SESSION['customer_id'])){
                         foreach($feature as $product){
+							$image = $product['product_image'];
+							$image_src = "../Images/products/".$image;
                             
                             echo" 
                                 <div class='col mt-5'>
                                     <div class='card d-flex col-sm-3 text-center  mb-5 h-100' style='max-width: 540px;'> 
-                                        <a  href='single_product.php?id=$product[product_id]' ><img src='../Images/Products/imageholder.jpg' class='card-img-top '  alt='...'></a>
+									
+									<div class='img img-thumbnail ' style='max-heignt: 100%;'>
+										<a  href='single_product.php?id=$product[product_id]' ><img src=' $image_src' class='img-fluid rounded-start images p-3 card-img-top w-100 p-3 '  alt='...'></a>
+									</div>
                                         <a  href='single_product.php?id=$product[product_id]'> 
                                             <div class='card-body  align-items-end' >
                                                 <h5 class='card-title'>Title: $product[product_title]</h5>

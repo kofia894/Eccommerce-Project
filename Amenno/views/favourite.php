@@ -167,17 +167,19 @@ $result = view_favourite_controller($ip_add, $_SESSION['customer_id']);
 					<?php 
 						
 							foreach($result as $fav){
+								$image = $fav['product_image'];
+								$image_src = "../Images/products/".$image;
 								echo"
 								<div class='card mb-3' style='max-width: 100%;'>
 									<div class='row g-0'>
 										<div class='col-md-4'>
-										<img src='../Images/Products/imageholder.jpg' class='img-fluid rounded-start' alt='...'>
+										<img src=' $image_src' class='img-fluid rounded-start' alt='...'>
 										</div>
 										<div class='col-md-7'>
 											<div class='card-body'>
 												<h5 class='card-title'>$fav[product_title]</h5>
 												<p class='card-text'>$fav[product_desc]</p>
-												<p class='card-text'><small class='text-muted'>Last updated 3 mins ago</small></p>
+												
 											</div>
 										</div>
 										<div class='col'>

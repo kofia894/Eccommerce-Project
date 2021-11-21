@@ -73,7 +73,7 @@ if (isset($_GET['id'])) {
 								<ul>
 									<li ><a href="../index.php">Home</a></li>
 									<li class="current-list-item"><a href="shop.php">Shop</a></li>
-									<li><a href="rent.php">Rent</a></li>
+									
 									<li><a href="favourite.php">Favourite</a></li>
 									<li><a href="contact.php">Contact</a></li>
 
@@ -166,10 +166,18 @@ if (isset($_GET['id'])) {
 	
 
 					<div class="card mb-3" style="height: 100%;">
+
+							<?php 
+								$image = $sel_prod['product_image'];
+								$image_src = "../Images/products/".$image;
+							?>
+
 					
 						<div class="row g-0">
 							<div class="col-md-4">
-								<img src="../Images/Products/imageholder.jpg" class="img-fluid rounded-start images p-3" alt="...">
+							<div class='img img-thumbnail ' style='max-heignt: 100%;'>
+								<a  href='single_product.php?id=$product[product_id]' ><img src='<?php echo $image_src;  ?>' class="img-fluid rounded-start images p-3 card-img-top w-100 p-3 "  alt='...'></a>
+							</div>
 							</div>
 							<div class="col-md-8">
 								<div class="card-body text-center">

@@ -171,13 +171,7 @@ $products = select_all_products_controller();
 	<!-- product section -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container ">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="section-title">	
-						
-					</div>
-				</div>
-			</div>
+			
 
 			<div class="container row product-lists">
 				<div class="container row row-cols-1 row-cols-md-3 g-4 mt-5">
@@ -186,50 +180,57 @@ $products = select_all_products_controller();
 
                     if (isset($_SESSION['customer_id'])){
                         foreach($products as $product){
+							$image = $product['product_image'];
+							$image_src = "../Images/products/".$image;
                             
                             echo" 
                                 <div class='col mt-5'>
                                     <div class='card d-flex col-sm-3 text-center  mb-5 h-100' style='max-width: 540px;'> 
-                                        <a  href='single_product.php?id=$product[product_id]' ><img src='../Images/Products/imageholder.jpg' class='card-img-top '  alt='...'></a>
-                                        <a  href='single_product.php?id=$product[product_id]'> 
-                                            <div class='card-body  align-items-end' >
-                                                <h5 class='card-title'>Title: $product[product_title]</h5>
-                                                <p class='card-text fw-bold'>Price: $product[product_price]</p>
-                                                <p class='card-text'>Description: $product[product_desc]</p>
+										<div class='img img-thumbnail ' style='max-heignt: 100%;'>
+										<a  href='single_product.php?id=$product[product_id]' ><img src=' $image_src' class='img-responsive img-fluid rounded-start images p-3 card-img-top w-100 p-3 '  alt='...'></a>
+										</div>
+                                        
+										<div class='col'>
+											<a  href='single_product.php?id=$product[product_id]'> 
+												<div class='card-body  align-items-end' >
+													<h5 class='card-title'>Title: $product[product_title]</h5>
+													<p class='card-text fw-bold'>Price: $product[product_price]</p>
+													<p class='card-text'>Description: $product[product_desc]</p>
 
-                                                <div class='container ' style= 'margin-top:50px';>
+													<div class='container ' style= 'margin-top:50px';>
 
-                                                    
-                                                    <div class = 'row'> 
+														
+														<div class = 'row'> 
 
-                                                        <div class='col cart-button'style=' margin-bottom: -50%'>
-                                                            <form  action='../Actions/add_to_cart.php' method='post' class='d-flex'>
-                                                                <input type='hidden' name='p_id' value =". $product['product_id'].">
-                                                                <input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
-                                                                <button class='btn btn-success' name='add_cart' type='submit'>Add to cart</button>
-                                                            </form>
-                                                    
-                                                        </div>
+															<div class='col cart-button'style=' margin-bottom: -50%'>
+																<form  action='../Actions/add_to_cart.php' method='post' class='d-flex'>
+																	<input type='hidden' name='p_id' value =". $product['product_id'].">
+																	<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
+																	<button class='btn btn-success' name='add_cart' type='submit'>Add to cart</button>
+																</form>
+														
+															</div>
 
-                                                        <div class='col fav ' style='margin-left : 80%; margin-bottom: -50%'>
-                                                            <form action='../Actions/add_to_favourite.php' method='post' class='d-flex'> 
-                                                                <input type='hidden' name='p_id' value =". $product['product_id'].">
-                                                                <input type= 'hidden' name ='c_id'   value =". $_SESSION['customer_id'].">
-                                                                <button class= 'btn btn-outline-danger btn-circle btn-md far fa-heart' name = 'add_fav'> </button>
-                                                            </form>
-                                                        </div>
+															<div class='col fav ' style='margin-left : 80%; margin-bottom: -50%'>
+																<form action='../Actions/add_to_favourite.php' method='post' class='d-flex'> 
+																	<input type='hidden' name='p_id' value =". $product['product_id'].">
+																	<input type= 'hidden' name ='c_id'   value =". $_SESSION['customer_id'].">
+																	<button class= 'btn btn-outline-danger btn-circle btn-md far fa-heart' name = 'add_fav'> </button>
+																</form>
+															</div>
 
-                                                    </div>
+														</div>
 
-                                                
-                                                    
-                        
-                                                    
-                                                    
-                                                </div>
-                                    
-                                            </div>
-                                        </a>
+													
+														
+							
+														
+														
+													</div>
+										
+												</div>
+											</a>
+										</div>
                                     </div>
                                 </div>
                                     

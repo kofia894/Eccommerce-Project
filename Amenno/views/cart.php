@@ -183,6 +183,8 @@ if(isset($_SESSION['customer_id'])){
 							<?php 
 							if(isset($_SESSION['customer_id'])){
 								foreach($result as $cart){
+									$image = $cart['product_image'];
+									$image_src = "../Images/products/".$image;
 									$sum = $cart['qty'] * $cart['product_price'];
 									echo"
 										<tr class='table-body-row'>
@@ -192,7 +194,7 @@ if(isset($_SESSION['customer_id'])){
 											<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
 											<td class='product-remove'><button class='btn btn-outline-danger text-white' name='del_cart'><a> <i class='fas fa-trash-alt'></i></a> </button></td>
 										</form>
-											<td class='product-image'><img src='../Images/Products/imageholder.jpg' alt=''></td>
+											<td class='product-image'><img src=' $image_src' alt=''></td>
 											<td class='product-name'>$cart[product_title]</td>
 											<td class='product-price'>$cart[product_price]</td>
 											<td class='product-quantity'>

@@ -152,11 +152,18 @@ session_start();
                                 
                                 <?php 
                                         foreach($products as $product){
+                                            $image = $product['product_image'];
+                                            $image_src = "../Images/products/".$image;
+                                           
                                             
                                             echo" 
                                                 <div class='col mt-5'>
                                                     <div class='card d-flex col-sm-3 text-center  mb-5 h-100' style='max-width: 540px;'> 
-                                                        <img src='../Images/Products/imageholder.jpg' class='card-img-top '  alt='...'>
+                                                        <div class='img img-thumbnail ' style='max-heignt: 100%;'>
+                                                            <img src=' $image_src' class='img-responsive card-img-top w-100 p-3  '>
+                                                        </div>
+                                                        
+                                                         
                                                         <div class='card-body  align-items-end'>
                                                             <h5 class='card-title'>Title: $product[product_title]</h5>
                                                             <p class='card-text'>Price: $product[product_price]</p>

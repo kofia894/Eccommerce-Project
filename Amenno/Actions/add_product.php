@@ -1,5 +1,6 @@
 <?php 
 require('../Controllers/product_controller.php');
+
 if(isset($_POST['add_pname'])){
     $prod_cat = $_POST['cat_id'];
     $prod_brand = $_POST['brand_id'];
@@ -7,41 +8,39 @@ if(isset($_POST['add_pname'])){
     $price = $_POST['p_price'];
     $desc = $_POST['p_desc'];
     $keywords = $_POST['p_kwords'];
+        
+        $name = $_FILES['product_image']['name'];
+        $target_dir = "../Images/products/";
+        $target_file = $target_dir . basename($_FILES["product_image"]["name"]);
 
-        $target_dir = "../assets/img/products/";
-        $name = basename($_FILES["product_image"]["name"]);
-        $file = $target_dir . basename($_FILES["product_image"]["name"]);
+        // Select file type
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-        // if(empty($_FILES["product_image"]["name"])){
-        //     echo "Must insert an Image";
-        // } else{
-        //     $upload = move_uploaded_file($_FILES["product_image"]["tmp_name"],$file);
-        //     if($upload){
-        //         // call the add_product_controller function: return true or false
-        //         $result =  add_product_controller($prod_cat,$prod_brand,$title, $price, $desc, $name, $keywords);
-        //         if($result){
-        //             header('Location: ../Admin/product_list.php');
-        //             // echo '<script>alert("Product Inserted")</script>';
-        //         }else{
-        //             // header('Location: ../View/add_product_page.php');
-        //             // echo '<script>alert("Unable to insert")</script>';
-        //         }
-        //     }else{
-        //         // echo "<script type='text/javascript'> alert('Upload Failed');              
-        //         // window.history.back();
-        //         // </script>";
-        //     }
-        // }
+        // Valid file extensions
+        $extensions_arr = array("jpg","jpeg","png","gif");
+
+          
+        // Check extension
+        if( in_array($imageFileType,$extensions_arr) ){
+        
+            if(move_uploaded_file($_FILES['product_image']['tmp_name'],$target_dir.$name)){
+         
+                $result =  add_product_controller($prod_cat,$prod_brand,$title, $price, $desc,$name, $name, $keywords);
+            
+                if($result === true){
+                    header('Location: ../Admin/product_list.php');
+                    
+                    // header('Location: ');
+                } 
+            
+            
+            }
+            
+        }
+        
         
         // call the add_product_controller function: return true or false
-        $result =  add_product_controller($prod_cat,$prod_brand,$title, $price, $desc, $file, $keywords);
-        if($result){
-            header('Location: ../Admin/product_list.php');
-            // echo '<script>alert("Product Inserted")</script>';
-        }else{
-            // header('Location: ../View/add_product_page.php');
-            // echo '<script>alert("Unable to insert")</script>';
-        }
+        
 
         
 
