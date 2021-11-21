@@ -5,21 +5,16 @@ require ('../Settings/core.php');
 
 session_start(); 
 
-$ip_add = $_SERVER['REMOTE_ADDR'];
-// if(isset($_SESSION['user_id'])){
-  
-// }
-
  
 
-$products = select_all_products_controller();
-					
-
-
+$feature = pick_random_controller();
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
+
+<!DOCTYPE php
+>
+<php
+ lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +22,7 @@ $products = select_all_products_controller();
 	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>Shop</title>
+	<title>Ameno</title>
 
 	<!-- favicon -->
 	<!-- <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png"> -->
@@ -70,7 +65,8 @@ $products = select_all_products_controller();
 					<div class="main-menu-wrap">
 						<!-- logo -->
 						<div class="site-logo">
-							<a href="index.php">
+							<a href="index.php
+							">
 								<img src="#" alt="">
 							</a>
 						</div>
@@ -80,19 +76,21 @@ $products = select_all_products_controller();
 						<nav class="navbar navbar-expand-lg main-menu">
 							<div class = "container-fluid">
 								<ul>
-									<li ><a href="../index.php">Home</a></li>
-									<li class="current-list-item"><a href="shop.php">Shop</a></li>
-								
+									<li class="current-list-item"><a href="index.php">Home</a></li>
+									<li><a href="shop.php">Shop</a></li>
+
 									<?php 
 										if(isset($_SESSION['user_id']) == 1){
 											echo'<li><a href="favourite.php">Favourite</a></li> ';
 										}
 									?>
+
+									
 									<li><a href="contact.php">Contact</a></li>
 
 									<?php 
 										if(isset($_SESSION['user_role']) == 1){
-											echo'<li><a href="../Admin/index.php">Admin Side</a></li> ';
+											echo'<li> <a href="../Admin/index.php">Admin Side</a></li> ';
 										}
 									?>
 									
@@ -125,6 +123,7 @@ $products = select_all_products_controller();
 							
 						</nav>
 						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+								
 						<div class="mobile-menu"></div>
 						<!-- menu end -->
 					</div>
@@ -132,7 +131,8 @@ $products = select_all_products_controller();
 			</div>
 		</div>
 	</div>
-
+	<!-- end header -->
+	
 	<!-- search area -->
 	<div class="search-area">
 		<div class="container">
@@ -152,21 +152,119 @@ $products = select_all_products_controller();
 			</div>
 		</div>
 	</div>
-	<!-- end search arewa -->
-	
-	<!-- breadcrumb-section -->
-	<div class="breadcrumb-section breadcrumb-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="breadcrumb-text">
-						<h1>Shop</h1>
+	<!-- end search area -->
+
+	<!-- home page slider -->
+	<div class="homepage-slider">
+		<!-- single home slider -->
+		<div class="single-homepage-slider homepage-bg-1">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">Shop for Essentials</p>
+								<h1>Create an Atmosphere for worship</h1>
+								<div class="hero-btns">
+									<!-- <a href="shop.php
+									" class="boxed-btn">Fruit Collection</a> -->
+									<a href="contact.php
+									" class="bordered-btn">Contact Us</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- single home slider -->
+		<div class="single-homepage-slider homepage-bg-2">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1 text-center">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">Shop with Us</p>
+								<h1>100% Genuine Products</h1>
+								<div class="hero-btns">
+									<a href="shop.php
+									" class="boxed-btn">Visit Purchse Shop</a>
+									<!-- <a href="contact.php
+									" class="bordered-btn">Contact Us</a> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- single home slider -->
+		<div class="single-homepage-slider homepage-bg-3">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1 text-right">
+						<div class="hero-text">
+							<div class="hero-text-tablecell">
+								<p class="subtitle">Convenience ?</p>
+								<h1>Have your products delivered right to your doorstep !</h1>
+								<div class="hero-btns">
+									<a href="shop.php
+									" class="boxed-btn">Login</a>
+									<!-- <a href="contact.php
+									" class="bordered-btn">Contact Us</a> -->
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end breadcrumb section -->
+	<!-- end home page slider -->
+
+	<!-- features list section -->
+	<div class="list-section pt-80 pb-80">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+					<div class="list-box d-flex align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-shipping-fast"></i>
+						</div>
+						<div class="content">
+							<h3>Delivery Available</h3>
+							<p></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+					<div class="list-box d-flex align-items-center">
+						<div class="">
+							<i class=""></i>
+						</div>
+						<div class="content">
+							<h3></h3>
+							<p></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="list-box d-flex justify-content-start align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-phone-volume"></i>
+						</div>
+						<div class="content">
+							<h3>24/7 Support</h3>
+							<p></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- end features list section -->
 
 	<!-- product section -->
 	<div class="product-section mt-150 mb-150">
@@ -174,7 +272,7 @@ $products = select_all_products_controller();
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="section-title">	
-						
+						<h3><span class="orange-text">Featured</span> Products</h3>
 					</div>
 				</div>
 			</div>
@@ -185,7 +283,7 @@ $products = select_all_products_controller();
                 <?php 
 
                     if (isset($_SESSION['customer_id'])){
-                        foreach($products as $product){
+                        foreach($feature as $product){
                             
                             echo" 
                                 <div class='col mt-5'>
@@ -194,13 +292,13 @@ $products = select_all_products_controller();
                                         <a  href='single_product.php?id=$product[product_id]'> 
                                             <div class='card-body  align-items-end' >
                                                 <h5 class='card-title'>Title: $product[product_title]</h5>
-                                                <p class='card-text fw-bold'>Price: $product[product_price]</p>
+                                                <p class='card-text'>Price: $product[product_price]</p>
                                                 <p class='card-text'>Description: $product[product_desc]</p>
 
                                                 <div class='container ' style= 'margin-top:50px';>
 
                                                     
-                                                    <div class = 'row'> 
+                                                        <div class = 'row'> 
 
                                                         <div class='col cart-button'style=' margin-bottom: -50%'>
                                                             <form  action='../Actions/add_to_cart.php' method='post' class='d-flex'>
@@ -238,7 +336,7 @@ $products = select_all_products_controller();
                         
                     } else {
 
-                        foreach($products as $product){
+                        foreach($feature as $product){
                             
                             echo" 
                                 <div class='col mt-5'>
@@ -300,8 +398,21 @@ $products = select_all_products_controller();
 	</div>
 	<!-- end product section -->
 
-		<!-- footer -->
-		<div class="footer-area">
+		
+	<!-- shop banner -->
+	<section class="shop-banner1">
+    	<div class="container">
+        	<h3>Advertisement  <br> will go  <span class="orange-text">Here!</span></h3>
+            
+        </div>
+    </section>
+	<!-- end shop banner -->
+
+	
+
+
+	<!-- footer -->
+	<div class="footer-area">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
@@ -356,4 +467,5 @@ $products = select_all_products_controller();
 	<script src="../assets/js/main.js"></script>
 
 </body>
-</html>
+</php
+>

@@ -99,7 +99,7 @@ class Product extends Connection{
 
 	function pick_random()
 	{
-		return $this->fetch("select * from products order by rand() limit by 3");	
+		return $this->fetch("select * from products order by rand() limit 3");	
 
 	}
 

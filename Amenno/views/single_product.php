@@ -105,7 +105,7 @@ if (isset($_GET['id'])) {
 											}
 
 										?>
-										<a class="btn btn-outline-success" name="logout" href="Actions/registerprocess.php?logout='$_SESSION[`user_id`]'">Logout</a>
+										<a class="btn btn-outline-success" name="logout" href="../Actions/registerprocess.php?logout='$_SESSION[`user_id`]'">Logout</a>
 								</form>
 
 							</dvi>
@@ -172,19 +172,39 @@ if (isset($_GET['id'])) {
 								<img src="../Images/Products/imageholder.jpg" class="img-fluid rounded-start images p-3" alt="...">
 							</div>
 							<div class="col-md-8">
-								<div class="card-body">
-										<h5 class="card-title"><?php if (isset($_GET['id'])) {echo $sel_prod['product_title'];}?></h5>
-										<p class="card-text"><?php if (isset($_GET['id'])) {echo $sel_prod['brand_name'];}?></p>
-										<p class="card-text"><?php if (isset($_GET['id'])) {echo $sel_prod['cat_name'];}?></p>
-										<p class="card-text"><?php if (isset($_GET['id'])) {echo $sel_prod['product_price'];}?></p>
-										<p class="card-text"><?php if (isset($_GET['id'])) {echo $sel_prod['product_desc'];}?></p>
-										<p class="card-text"><?php if (isset($_GET['id'])) {echo $sel_prod['product_keywords'];}?></p>
+								<div class="card-body text-center">
+										<h5 class="card-title"> Title: <?php if (isset($_GET['id'])) {echo $sel_prod['product_title'];}?></h5>
+										<p class="card-text"> Brand: <?php if (isset($_GET['id'])) {echo $sel_prod['brand_name'];}?></p>
+										<p class="card-text"> Category: <?php if (isset($_GET['id'])) {echo $sel_prod['cat_name'];}?></p>
+										<p class="card-text">Price: GHS<?php if (isset($_GET['id'])) {echo $sel_prod['product_price'];}?></p>
+										<p class="card-text">Description: <?php if (isset($_GET['id'])) {echo $sel_prod['product_desc'];}?></p>
+										<p class="card-text">Keywords: <?php if (isset($_GET['id'])) {echo $sel_prod['product_keywords'];}?></p>
 										<p class="card-text"><small class="text-muted"></small></p>
-										<a href="#" class="btn btn-primary">Add to Cart</a>
+										<div class = 'row'> 
+
+											<div class='col cart-button'style=' margin-bottom: -50%'>
+												<form  action='../Actions/add_to_cart.php' method='post' class='d-flex'>
+													<input type='hidden' name='p_id' value =". $product['product_id'].">
+													<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
+													<button class='btn btn-success' name='add_cart' type='submit'>Add to cart</button>
+												</form>
+
+											</div>
+
+											<div class='col fav ' style='margin-left : 80%; margin-bottom: 0%'>
+												<form action='../Actions/add_to_favourite.php' method='post' class='d-flex'> 
+													<input type='hidden' name='p_id' value =". $product['product_id'].">
+													<input type= 'hidden' name ='c_id'   value =". $_SESSION['customer_id'].">
+													<button class= 'btn btn-outline-danger btn-circle btn-md far fa-heart' name = 'add_fav'> </button>
+												</form>
+											</div>
+
+										</div>
 									
 								</div>
 							</div>
 						</div>
+						<div class="row g-0"></div>
 					</div>
 					
 				</div>

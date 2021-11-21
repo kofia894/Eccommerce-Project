@@ -177,64 +177,134 @@ session_start();
 				
 					<div class=" container single-product">
 					<?php 
-                     if(isset($result)){
-                            foreach($result as $product){
-								echo" 
-								<div class='col mt-5'>
-									<div class='card d-flex col-sm-3 text-center  mb-5 h-100' style='max-width: 30%;'> 
-										<a  href='single_product.php?id=$product[product_id]' ><img src='../Images/Products/imageholder.jpg' class='card-img-top '  alt='...'></a>
-										<a  href='single_product.php?id=$product[product_id]'> 
-											<div class='card-body  align-items-end' >
-												<h5 class='card-title'>Title: $product[product_title]</h5>
-												<p class='card-text'>Price: $product[product_price]</p>
-												<p class='card-text'>ID: $product[product_id]</p>
-	
-												<div class='container ' style= 'margin-top:50px';>
-	
-													
-														<div class = 'row'> 
-	
-														<div class='col cart-button'style=' margin-bottom: -10%'>
-															<form  action='../Actions/add_to_cart.php' method='post' class='d-flex'>
-																<input type='hidden' name='p_id' value =". $product['product_id'].">
-																<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
-																<button class='btn btn-success' name='add_cart' type='submit'>Add to cart</button>
-															</form>
-													
+                     
+					 if(isset($_SESSION['customer_id'])){
+							if(isset($result )){
+								foreach($result as $product){
+									echo" 
+									<div class='col mt-5'>
+										<div class='card d-flex col-sm-3 text-center  mb-5 h-100' style='max-width: 30%;'> 
+											<a  href='single_product.php?id=$product[product_id]' ><img src='../Images/Products/imageholder.jpg' class='card-img-top '  alt='...'></a>
+											<a  href='single_product.php?id=$product[product_id]'> 
+												<div class='card-body  align-items-end' >
+													<h5 class='card-title'>Title: $product[product_title]</h5>
+													<p class='card-text'>Price: $product[product_price]</p>
+													<p class='card-text'>ID: $product[product_id]</p>
+		
+													<div class='container ' style= 'margin-top:50px';>
+		
+														
+															<div class = 'row'> 
+		
+															<div class='col cart-button'style=' margin-bottom: -10%'>
+																<form  action='../Actions/add_to_cart.php' method='post' class='d-flex'>
+																	<input type='hidden' name='p_id' value =". $product['product_id'].">
+																	<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
+																	<button class='btn btn-success' name='add_cart' type='submit'>Add to cart</button>
+																</form>
+														
+															</div>
+		
+															<div class='col fav ' style='margin-left : 80%; margin-bottom: 0%'>
+																<form action='../Actions/add_to_favourite.php' method='post' class='d-flex'> 
+																	<input type='hidden' name='p_id' value =". $product['product_id'].">
+																	<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
+																	<button class= 'btn btn-outline-danger btn-circle btn-md far fa-heart' name = 'add_fav'> </button>
+																</form>
+															</div>
+		
 														</div>
-	
-														<div class='col fav ' style='margin-left : 80%; margin-bottom: 0%'>
-															<form action='../Actions/add_to_favourite.php' method='post' class='d-flex'> 
-																<input type='hidden' name='p_id' value =". $product['product_id'].">
-																<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
-																<button class= 'btn btn-outline-danger btn-circle btn-md far fa-heart' name = 'add_fav'> </button>
-															</form>
-														</div>
-	
+		
+													
+														
+							
+														
+														
 													</div>
-	
-												
-													
-						
-													
-													
+										
 												</div>
-									
-											</div>
-										</a>
+											</a>
+										</div>
 									</div>
+										
+									";
+
+								}
+							}else {
+								echo " 
+								<div class='container mt-5'>
+								<h5> Results Not Found </h5>
 								</div>
+								
+								";
+
+							}
+					 	}else{
+
+							if(isset($result )){
+								foreach($result as $product){
+									echo" 
+									<div class='col mt-5'>
+										<div class='card d-flex col-sm-3 text-center  mb-5 h-100' style='max-width: 30%;'> 
+											<a  href='single_product.php?id=$product[product_id]' ><img src='../Images/Products/imageholder.jpg' class='card-img-top '  alt='...'></a>
+											<a  href='single_product.php?id=$product[product_id]'> 
+												<div class='card-body  align-items-end' >
+													<h5 class='card-title'>Title: $product[product_title]</h5>
+													<p class='card-text'>Price: $product[product_price]</p>
+													<p class='card-text'>ID: $product[product_id]</p>
+		
+													<div class='container ' style= 'margin-top:50px';>
+		
+														
+															<div class = 'row'> 
+		
+															<div class='col cart-button'style=' margin-bottom: -10%'>
+																<form  action='login.php' method='post' class='d-flex'>
+																	<input type='hidden' name='p_id' value =". $product['product_id'].">
+																
+																	<button class='btn btn-success' name='add_cart' type='submit'>Add to cart</button>
+																</form>
+														
+															</div>
+		
+															<div class='col fav ' style='margin-left : 80%; margin-bottom: 0%'>
+																<form action='login.php' method='post' class='d-flex'> 
+																	<input type='hidden' name='p_id' value =". $product['product_id'].">
+																
+																	<button class= 'btn btn-outline-danger btn-circle btn-md far fa-heart' name = 'add_fav'> </button>
+																</form>
+															</div>
+		
+														</div>
+		
+													
+														
+							
+														
+														
+													</div>
+										
+												</div>
+											</a>
+										</div>
+									</div>
+										
+									";
+
+								}
+							}else {
+								echo " 
+									<div class='container mt-5'>
+										<h5> Results Not Found </h5>
+									</div>
 									
 								";
 
-                            }
-                        }else 
-                            echo " 
-                            <div class='container mt-5'>
-                            <h5> Results Not Found </h5>
-                            </div>
-                            
-                            ";
+							}
+
+
+						 }
+                           
 					?>
 					</div>
 			</div>
@@ -263,27 +333,26 @@ session_start();
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+						<p> Amenno aims at selling and delivering merchandise ued during church service conveniently for any denomination. </p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box get-in-touch">
-						<h2 class="widget-title">Get in Touch</h2>
-						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
-							<li>+00 111 222 3333</li>
-						</ul>
+					
 					</div>
 				</div>
+		
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box subscribe">
-						<h2 class="widget-title">Subscribe</h2>
-						<p>Subscribe to our mailing list to get the latest updates.</p>
-						<form action="index.html">
-							<input type="email" placeholder="Email">
-							<button type="submit"><i class="fas fa-paper-plane"></i></button>
-						</form>
+                    <h2 class="widget-title">Get in Touch</h2>
+						<ul>
+							<li>kofi.asante@ashesi.edu.gh</li>
+							<li>kelvin.akakpo@ashesi.edu.gh</li>
+							<li>israel.orevaoghene@ashesi.edu.gh</li>
+                            <li>israel.orevaoghene@ashesi.edu.gh</li>
+						</ul>
+					
+						
 					</div>
 				</div>
 			</div>

@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
-Create Database amenno;
+
 
 -- --------------------------------------------------------
 
@@ -80,6 +80,23 @@ CREATE TABLE `customer` (
   `customer_contact` varchar(15) NOT NULL,
   `customer_image` varchar(100) DEFAULT NULL,
   `user_role` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `delivery` (
+  `delivery_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `customer_name` varchar(100) NOT NULL,
+  `customer_email` varchar(50) NOT NULL,
+  `customer_contact` varchar(15) NOT NULL,
+  `customer_location` varchar(100) DEFAULT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -191,6 +208,11 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `customer_id` (`customer_id`);
 
+
+ALTER TABLE `delivery`
+  ADD PRIMARY KEY (`delivery_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
 --
 -- Indexes for table `payment`
 --
@@ -247,6 +269,8 @@ ALTER TABLE `payment`
 ALTER TABLE `products`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `delivery`
+  MODIFY `delivery_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -265,6 +289,8 @@ ALTER TABLE `favourite`
   ADD CONSTRAINT `favourite_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `favourite_ibfk_2` FOREIGN KEY (`c_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+ALTER TABLE `delivery`
+  ADD CONSTRAINT `delivery_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 --
 -- Constraints for table `orderdetails`
 --
@@ -277,6 +303,7 @@ ALTER TABLE `orderdetails`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
+
 
 --
 -- Constraints for table `payment`

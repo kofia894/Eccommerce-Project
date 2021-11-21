@@ -1,5 +1,10 @@
 <?php 
+require('../Controllers/cart_controller.php');
+require ('../Settings/core.php');
 session_start();
+
+$ip_add = $_SERVER['REMOTE_ADDR'];
+$result = view_products_controller($ip_add, $_SESSION['customer_id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,7 +106,7 @@ session_start();
 											}
 
 										?>
-										<a class="btn btn-outline-success" name="logout" href="Actions/registerprocess.php?logout='$_SESSION[`user_id`]'">Logout</a>
+										<a class="btn btn-outline-success" name="logout" href="../Actions/registerprocess.php?logout='$_SESSION[`user_id`]'">Logout</a>
 								</form>
 
 							</dvi>
@@ -155,33 +160,11 @@ session_start();
 	<!-- check out section -->
 	<div class="checkout-section mt-150 mb-150">
 		<div class="container">
+		<form action="../Actions/process_payment.php" method="post" id="delivery-form">
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="checkout-accordion-wrap">
 						<div class="accordion" id="accordionExample">
-						  <div class="card single-accordion">
-						    <div class="card-header" id="headingOne">
-						      <h5 class="mb-0">
-						        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						          Billing Address
-						        </button>
-						      </h5>
-						    </div>
-
-						    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-						      <div class="card-body">
-						        <div class="billing-address-form">
-						        	<form action="index.html">
-						        		<p><input type="text" placeholder="Name"></p>
-						        		<p><input type="email" placeholder="Email"></p>
-						        		<p><input type="text" placeholder="Address"></p>
-						        		<p><input type="tel" placeholder="Phone"></p>
-						        		<p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Say Something"></textarea></p>
-						        	</form>
-						        </div>
-						      </div>
-						    </div>
-						  </div>
 						  <div class="card single-accordion">
 						    <div class="card-header" id="headingTwo">
 						      <h5 class="mb-0">
@@ -193,27 +176,40 @@ session_start();
 						    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 						      <div class="card-body">
 						        <div class="shipping-address-form">
-						        	<p>Delivery Details form is here.</p>
+
+								
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Name" id="name" name="name">
+											<small></small>
+										</div>
+
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Email" id="email" name="email">
+											<small></small>
+										</div>
+
+										
+										<div class="form-group">
+											<input type="tel" class="form-control" id = "contact" placeholder="Contact"  name="contact">
+										<small></small>
+										</div>
+
+										<div class="form-group">
+											<input type="text" class="form-control" id = "location" placeholder="Location"  name="loation">
+										<small></small>
+										</div>
+
+										
+									
+										
+										
+									
+								
 						        </div>
 						      </div>
 						    </div>
 						  </div>
-						  <div class="card single-accordion">
-						    <div class="card-header" id="headingThree">
-						      <h5 class="mb-0">
-						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						          Card Details
-						        </button>
-						      </h5>
-						    </div>
-						    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-						      <div class="card-body">
-						        <div class="card-details">
-						        	<p>Your card details goes here.</p>
-						        </div>
-						      </div>
-						    </div>
-						  </div>
+						  
 						</div>
 
 					</div>
@@ -231,78 +227,117 @@ session_start();
 							<tbody class="order-details-body">
 								<tr>
 									<td>Product</td>
-									<td>Total</td>
+									<td>Price</td>
 								</tr>
-								<tr>
-									<td>Guitar</td>
-									<td>$85.00</td>
-								</tr>
-								<tr>
-									<td>Saxophone</td>
-									<td>$70.00</td>
-								</tr>
-								<tr>
-									<td>Drum Set</td>
-									<td>$35.00</td>
-								</tr>
+								<?php 
+									if(isset($_SESSION['customer_id'])){
+										foreach($result as $cart){
+											echo"
+											
+											<tr>
+												<td>$cart[product_title]</td>
+												<td>$cart[product_price]</td>
+											</tr>
+											";
+										
+
+										}
+									}
+								?>
+								
+								
 							</tbody>
-							<tbody class="checkout-details">
-								<tr>
-									<td>Subtotal</td>
-									<td>$190</td>
-								</tr>
-								<tr>
-									<td>Shipping</td>
-									<td>$50</td>
-								</tr>
-								<tr>
-									<td>Total</td>
-									<td>$240</td>
-								</tr>
-							</tbody>
+						
 						</table>
-						<a href="#" class="boxed-btn">Make Payment</a>
+
+						<button type="submit" onclick="payWithPaystack()" class="btn btn-success boxed-btn mt-5"  id= "submitbtn" name="login_user">Make Payment</button>
+						
 					</div>
 				</div>
 			</div>
+		</form>
 		</div>
 	</div>
 	<!-- end check out section -->
 
-	<!-- footer -->
-	<div class="footer-area">
+		<!-- footer -->
+		<div class="footer-area">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+						<p> Amenno aims at selling and delivering merchandise ued during church service conveniently for any denomination. </p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box get-in-touch">
-						<h2 class="widget-title">Get in Touch</h2>
-						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
-							<li>+00 111 222 3333</li>
-						</ul>
+					
 					</div>
 				</div>
+		
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box subscribe">
-						<h2 class="widget-title">Subscribe</h2>
-						<p>Subscribe to our mailing list to get the latest updates.</p>
-						<form action="index.html">
-							<input type="email" placeholder="Email">
-							<button type="submit"><i class="fas fa-paper-plane"></i></button>
-						</form>
+                    <h2 class="widget-title">Get in Touch</h2>
+						<ul>
+							<li>kofi.asante@ashesi.edu.gh</li>
+							<li>kelvin.akakpo@ashesi.edu.gh</li>
+							<li>israel.orevaoghene@ashesi.edu.gh</li>
+                            <li>israel.orevaoghene@ashesi.edu.gh</li>
+						</ul>
+					
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- end footer -->
+
+	      <!-- PAYSTACK INLINE SCRIPT -->
+		  <script src="https://js.paystack.co/v1/inline.js"></script> 
+
+			<script>
+				const paymentForm = document.getElementById('paymentForm');
+				paymentForm.addEventListener("submit", payWithPaystack, false);
+
+				// PAYMENT FUNCTION
+				function payWithPaystack() {
+
+					let handler = PaystackPop.setup({
+						key: 'pk_test_b28f7685fbbab527a165b02f5d271541fa8e95fa', // Replace with your public key
+						email: document.getElementById("email-address").value,
+						amount: document.getElementById("amount").value * 100,
+						currency:'GHS',
+						onClose: function(){
+							window.location = "http://http://localhost/Ecommerce_group_project/Eccommerce-Project/Amenno/views/cart.php?transaction=cancel"
+						alert('Transaction Cancelled.');
+						},
+						callback: function(response){
+
+							let message = "Payment Successful! Reference: " + response.reference;
+							alert(message);
+							window.location = "http://localhost/Ecommerce_group_project/Eccommerce-Project/Amenno/Actions/process_payment.php?reference=" + response.reference;
+						
+							// send email, amount and reference to our server using AJAX
+							// $.ajax({
+							//     type:"GET",
+							//     url: "../Actions/process_payment.php", 
+							//     data:{'email':document.getElementById("email-address").value, 'amount':document.getElementById("amount").value, 'reference':response.reference},
+							//     success: function(response){
+							//         alert(response)
+							//     },
+							//     error: function(error){
+							//         alert(error)
+							//     }
+							// });
+
+						}
+					});
+					handler.openIframe();
+				}
+
+			</script>
 	
 
 	

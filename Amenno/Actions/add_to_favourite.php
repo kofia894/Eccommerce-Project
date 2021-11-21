@@ -48,7 +48,7 @@ if(isset($_POST['add_fav'])){
         
     }
 
-     header('Location: ../Views/shop.php');
+     
 
 }
 if(isset($_POST['delete_fav'])){
