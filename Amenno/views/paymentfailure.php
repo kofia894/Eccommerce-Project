@@ -153,7 +153,7 @@ if(isset($_SESSION['customer_id'])){
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<h1>Cart</h1>
+						<h1>Payment FeedBack</h1>
 					</div>
 				</div>
 			</div>
@@ -167,126 +167,11 @@ if(isset($_SESSION['customer_id'])){
 			<div class="row">
 				<div class="col-lg-8 col-md-12">
 					<div class="cart-table-wrap">
-						<table class="cart-table">
-							<thead class="cart-table-head">
-								<tr class="table-head-row">
-									<th class="product-remove"></th>
-									<th class="product-image">Product Image</th>
-									<th class="product-name">Name</th>
-									<th class="product-price">Price</th>
-									<th class="product-quantity">Quantity</th>
-									<th class="product-quantity">Total</th>
-								
-								</tr>
-							</thead>
-							<tbody>
-							<?php 
-							if(isset($_SESSION['customer_id'])){
-								foreach($result as $cart){
-									$image = $cart['product_image'];
-									$image_src = "../Images/products/".$image;
-									$sum = $cart['qty'] * $cart['product_price'];
-									echo"
-										<tr class='table-body-row'>
-
-										<form action = ../Actions/add_to_cart.php  method='post'>
-											<input type='hidden' name='p_id' value =". $cart['product_id'].">
-											<input type= 'hidden' name ='c_id'  value =". $_SESSION['customer_id'].">
-											<td class='product-remove'><button class='btn btn-outline-danger text-white' name='del_cart'><a> <i class='fas fa-trash-alt'></i></a> </button></td>
-										</form>
-											<td class='product-image'><img src=' $image_src' alt=''></td>
-											<td class='product-name'>$cart[product_title]</td>
-											<td class='product-price'>$cart[product_price]</td>
-											<td class='product-quantity'>
-												<form  action='../Actions/manage_quantity_cart.php' method='post' class='d-flex ml-4'>
-												<input type='hidden' name='p_id' value =". $cart['product_id'].">
-												<input type='hidden' name='c_id' value =". $cart['c_id'].">
-												<input type='number' name='p_qty' value =". $cart['qty'].">
-												<button class='btn btn-primary ml-4' name='update_qty' type='submit'>Update</button>
-										  </form>
-											</td>
-											<td>  
-											<p>$sum</p>
-											</td>
-											
-										</tr>
-										";
-								}
-
-							}
-								
-							?>
-
-							</tbody>
-						</table>
+						<h1>Payment Unsuccessful !</h1>
 					</div>
 				</div>
 
-				<div class="col-lg-4">
-					<div class="total-section">
-						<table class="total-table">
-							<thead class="total-table-head">
-								<tr class="table-total-row">
-									<th>Total</th>
-									<th>Price</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="total-data">
-									<td><strong>Subtotal: </strong></td>
-									
-									<?php
-											if(isset($_SESSION['customer_id'])){
-												foreach($total as $tot){
-													echo " 
-														<td>  $tot[total]</td> 
-	
-													"; 
-	
-												}
-
-											}
-									
-
-										?>
-								
-								</tr>
-								
-								<tr class="total-data">
-									<td><strong>Total: </strong></td>
-									<?php 
-
-									if(isset($_SESSION['customer_id'])){
-										$_SESSION['sum2'] = 0;
-										foreach($result as $cart){
-											$_SESSION['sum2'] = $_SESSION['sum2'] + ($cart['qty'] * $cart['product_price']);
-										}
-										echo"<td>GHS:" .$_SESSION['sum2']." </td>";
-									}
-
-										
-									
-									?>
-									
-								</tr>
-							</tbody>
-						</table>
-						<div class="cart-buttons">
-							<?php
-								if(isset($_SESSION['customer_id'])){
-									echo "
-									<form action='../Actions/add_order.php' method = 'post'>
-									<button  class='boxed-btn black' name='add_order' >Check Out</button>
-									</form>
-									";
-								}
-								?>
-							
-						</div>
-					</div>
-
-				
-				</div>
+			
 			</div>
 		</div>
 	</div>

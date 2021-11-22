@@ -36,6 +36,38 @@ class Cart extends Connection{
 	function check_duplicate($product_id,$customer_id){
 		return $this->fetchone("select * from cart where p_id = '$product_id' and c_id = '$customer_id'");
 	}
+
+	function add_order($customer_id, $invoice_number, $date, $status){
+
+        return $this->query("insert into orders (customer_id, invoice_no, order_date, order_status) values('$customer_id', '$invoice_number', '$date', '$status')");
+
+    }
+
+	function select_cart($customer_id, $ip){
+        return $this->fetch("select * from cart where c_id ='$customer_id' or ip_add = '$ip' ");
+    }
+
+	function add_order_details($order_id, $pid, $qty){
+
+        return $this->query("insert into orderdetails (order_id, product_id, qty) values ('$order_id',  '$pid', '$qty')  ");
+
+    }
+
+	function select_order($customer_id){
+        return $this->fetchOne("select * from orders where customer_id ='$customer_id'");
+    }
+
+	function make_payment($customer_id, $order_id, $amount, $currency, $paymentdate){
+
+        return $this->query("insert into payment (amt, customer_id, order_id, currency, payment_date) values ('$amount',  '$customer_id', '$order_id', '$currency', '$paymentdate' )  ");
+        
+    }
+
+	function clear_cart($customer_id, $ip){
+        return $this->query("delete from cart where c_id = '$customer_id' or ip_add = '$ip' ");
+    }
+
+
 	
 
 

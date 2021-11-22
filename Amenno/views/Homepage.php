@@ -292,7 +292,7 @@ $feature = pick_random_controller();
                                     <div class='card d-flex col-sm-3 text-center  mb-5 h-100' style='max-width: 540px;'> 
 									
 									<div class='img img-thumbnail ' style='max-heignt: 100%;'>
-										<a  href='single_product.php?id=$product[product_id]' ><img src=' $image_src' class='img-fluid rounded-start images p-3 card-img-top w-100 p-3 '  alt='...'></a>
+									<a  href='single_product.php?id=$product[product_id]' ><img src=' $image_src' class='img-fluid rounded-start images p-3 card-img-top w-100 p-3 '  alt='...'></a>
 									</div>
                                         <a  href='single_product.php?id=$product[product_id]'> 
                                             <div class='card-body  align-items-end' >

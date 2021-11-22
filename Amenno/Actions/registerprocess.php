@@ -53,6 +53,7 @@ if(isset($_POST['login_user'])){
 
             $_SESSION['user_id'] = $result['customer_name'];
             $_SESSION['customer_id'] = $result['customer_id'];
+            $_SESSION['email'] = $result['customer_email'];
 
 
             echo '<script>alert("Logged In)</script>';

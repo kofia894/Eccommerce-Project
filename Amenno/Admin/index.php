@@ -122,56 +122,8 @@
                     <!-- ============================================================== -->
                     <div class="ecommerce-widget">
 
-                        <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card bg-warning">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Total Products</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">1209</h1>
-                                        </div>
-                                       
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card bg-success">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Total Users</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">120</h1>
-                                        </div>
-                                      
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card bg-info">
-                                    <div class="card-body">
-                                        <h5 class="text-muted"> Total Orders</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">5000</h1>
-                                        </div>
-                                       
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                    
-                        </div>
-                        <div class="row">
-                            <!-- ============================================================== -->
-                      
-                            <!-- ============================================================== -->
-
-    
-                            <!-- ============================================================== -->
-                            <!-- ============================================================== -->
-                            <!-- customer acquistion  -->
-                            <!-- ============================================================== -->
-                        </div>
+                        
+                       <h1> Welcome ! </h5>
 
 
                         

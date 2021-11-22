@@ -70,7 +70,7 @@ $result = view_products_controller($ip_add, $_SESSION['customer_id']);
 								<ul>
 									<li ><a href="../index.php">Home</a></li>
 									<li><a href="shop.php">Shop</a></li>
-									<li><a href="rent.php">Rent</a></li>
+									
 									<?php 
 										if(isset($_SESSION['user_id']) == 1){
 											echo'<li><a href="favourite.php">Favourite</a></li> ';
@@ -160,7 +160,7 @@ $result = view_products_controller($ip_add, $_SESSION['customer_id']);
 	<!-- check out section -->
 	<div class="checkout-section mt-150 mb-150">
 		<div class="container">
-		<form action="../Actions/process_payment.php" method="post" id="delivery-form">
+		
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="checkout-accordion-wrap">
@@ -168,43 +168,33 @@ $result = view_products_controller($ip_add, $_SESSION['customer_id']);
 						  <div class="card single-accordion">
 						    <div class="card-header" id="headingTwo">
 						      <h5 class="mb-0">
-						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						          Delivery Details
+						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+						          Payment Details
 						        </button>
 						      </h5>
 						    </div>
-						    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+						    <div id="collapseOne" class="" aria-labelledby="headingTwo" data-parent="#accordionExample">
 						      <div class="card-body">
 						        <div class="shipping-address-form">
 
 								
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Name" id="name" name="name">
-											<small></small>
-										</div>
-
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Email" id="email" name="email">
-											<small></small>
-										</div>
-
-										
-										<div class="form-group">
-											<input type="tel" class="form-control" id = "contact" placeholder="Contact"  name="contact">
-										<small></small>
-										</div>
-
-										<div class="form-group">
-											<input type="text" class="form-control" id = "location" placeholder="Location"  name="loation">
-										<small></small>
-										</div>
-
-										
+								<form id="paymentForm" action="../Actions/process_payment.php" method="post">
+									<div class="form-group">
+										<label for="email">Email Address</label>
+										<input type="hidden"class="form-control" name="invoice" value= "<?php $invoice = mt_rand(); ?>" />
+										<input type="hidden"class="form-control" name="date" value= " <?php $date = date("Y-m-d"); ?> "/>
+										<input type="email"class="form-control" id="email-address" value =" <?php echo $_SESSION['email'] ?>" />
+									</div>
+									<div class="form-group">
+										<label for="amount">Amount</label>
+										<input type="tel" class="form-control" id="amount" value =" <?php echo $_SESSION['sum2'] ?>" />
+									</div>
 									
-										
-										
-									
-								
+									<div class="form-submit">
+										<button type="submit" class="btn btn-success" name="pay" onclick="payWithPaystack()"> Make Payment </button>
+									</div>
+								</form>
+
 						        </div>
 						      </div>
 						    </div>
@@ -215,47 +205,11 @@ $result = view_products_controller($ip_add, $_SESSION['customer_id']);
 					</div>
 				</div>
 
-				<div class="col-lg-4">
-					<div class="order-details-wrap">
-						<table class="order-details">
-							<thead>
-								<tr>
-									<th>Your order Details</th>
-									<th>Price</th>
-								</tr>
-							</thead>
-							<tbody class="order-details-body">
-								<tr>
-									<td>Product</td>
-									<td>Price</td>
-								</tr>
-								<?php 
-									if(isset($_SESSION['customer_id'])){
-										foreach($result as $cart){
-											echo"
-											
-											<tr>
-												<td>$cart[product_title]</td>
-												<td>$cart[product_price]</td>
-											</tr>
-											";
-										
+				
 
-										}
-									}
-								?>
-								
-								
-							</tbody>
-						
-						</table>
-
-						<button type="submit" onclick="payWithPaystack()" class="btn btn-success boxed-btn mt-5"  id= "submitbtn" name="login_user">Make Payment</button>
-						
-					</div>
-				</div>
+				
 			</div>
-		</form>
+		
 		</div>
 	</div>
 	<!-- end check out section -->
@@ -283,7 +237,6 @@ $result = view_products_controller($ip_add, $_SESSION['customer_id']);
 							<li>kofi.asante@ashesi.edu.gh</li>
 							<li>kelvin.akakpo@ashesi.edu.gh</li>
 							<li>israel.orevaoghene@ashesi.edu.gh</li>
-                            <li>israel.orevaoghene@ashesi.edu.gh</li>
 						</ul>
 					
 						
@@ -294,50 +247,63 @@ $result = view_products_controller($ip_add, $_SESSION['customer_id']);
 	</div>
 	<!-- end footer -->
 
-	      <!-- PAYSTACK INLINE SCRIPT -->
-		  <script src="https://js.paystack.co/v1/inline.js"></script> 
+						<!-- PAYSTACK INLINE SCRIPT -->
+			<script src="https://js.paystack.co/v1/inline.js"></script> 
 
-			<script>
+			<!--<script>
 				const paymentForm = document.getElementById('paymentForm');
 				paymentForm.addEventListener("submit", payWithPaystack, false);
 
 				// PAYMENT FUNCTION
-				function payWithPaystack() {
-
-					let handler = PaystackPop.setup({
-						key: 'pk_test_b28f7685fbbab527a165b02f5d271541fa8e95fa', // Replace with your public key
+				function payWithPaystack(e) {
+					e.preventDefault();
+					var handler = PaystackPop.setup({
+						key: 'pk_test_05e1eecbc5ab7c95fd5f4d3c1aa1d02d2298e973', // Replace with your public key
 						email: document.getElementById("email-address").value,
 						amount: document.getElementById("amount").value * 100,
 						currency:'GHS',
 						onClose: function(){
-							window.location = "http://http://localhost/Ecommerce_group_project/Eccommerce-Project/Amenno/views/cart.php?transaction=cancel"
-						alert('Transaction Cancelled.');
+						alert('Window closed.');
 						},
 						callback: function(response){
-
-							let message = "Payment Successful! Reference: " + response.reference;
-							alert(message);
-							window.location = "http://localhost/Ecommerce_group_project/Eccommerce-Project/Amenno/Actions/process_payment.php?reference=" + response.reference;
-						
-							// send email, amount and reference to our server using AJAX
-							// $.ajax({
-							//     type:"GET",
-							//     url: "../Actions/process_payment.php", 
-							//     data:{'email':document.getElementById("email-address").value, 'amount':document.getElementById("amount").value, 'reference':response.reference},
-							//     success: function(response){
-							//         alert(response)
-							//     },
-							//     error: function(error){
-							//         alert(error)
-							//     }
-							// });
-
+							window.location = `../Actions/process_payment.php?email=${document.getElementById("email-address").value}&amount=${document.getElementById("amount").value}&reference=${response.reference}`
 						}
 					});
 					handler.openIframe();
 				}
 
-			</script>
+			</script>  -->
+
+				<script> 
+
+				var paymentForm = document.getElementById('paymentForm');
+				paymentForm.addEventListener('submit', payWithPaystack, false);
+
+				function payWithPaystack(e) {
+					e.preventDefault()
+				var handler = PaystackPop.setup({
+					key: 'pk_live_bd5356607a881f3a0d6843b75d3172b74b9675cd', 
+					email: document.getElementById('email-address').value,
+					amount: document.getElementById('amount').value * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
+					currency: 'GHS', // Use GHS for Ghana Cedis or USD for US Dollars
+					callback: function(response) {
+						console.log(response);
+					//this happens after the payment is completed successfully
+					
+					
+					// Make an AJAX call to your server with the reference to verify the transaction
+					window.location = `../Actions/process_payment.php?email=${document.getElementById("email-address").value}&amount=${document.getElementById("amount").value}&reference=${response.reference}`
+					},
+					onClose: function() {
+					alert('Transaction was not completed, window closed.');
+					},
+				});
+				handler.openIframe();
+				}
+
+				</script> 
+
+
 	
 
 	
