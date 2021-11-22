@@ -53,6 +53,7 @@ if(isset($_POST['del_cart'])){
 
     if($result){
          header('Location: ../views/cart.php ');
+         
     } 
     else {
        

@@ -175,7 +175,7 @@ if (isset($_GET['id'])) {
 					
 						<div class="row g-0">
 							<div class="col-md-4">
-							<div class='img img-thumbnail ' style='max-heignt: 100%;'>
+							<div class='img img-thumbnail ' style='max-height: 100%;'>
 								<a  href='single_product.php?id=$product[product_id]' ><img src='<?php echo $image_src;  ?>' class="img-fluid rounded-start images p-3 card-img-top w-100 p-3 "  alt='...'></a>
 							</div>
 							</div>

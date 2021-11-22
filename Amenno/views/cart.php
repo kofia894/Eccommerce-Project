@@ -314,7 +314,7 @@ if(isset($_SESSION['customer_id'])){
 						<ul>
 							<li>kofi.asante@ashesi.edu.gh</li>
 							<li>kelvin.akakpo@ashesi.edu.gh</li>
-							<li>israel.orevaoghene@ashesi.edu.gh</li>
+							<li>apa.afful@ashesi.edu.gh</li>
                             <li>israel.orevaoghene@ashesi.edu.gh</li>
 						</ul>
 					
