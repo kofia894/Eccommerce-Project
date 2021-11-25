@@ -1,7 +1,7 @@
 <?php
 
 
-require('../Classes/product_class.php');
+require_once('../Classes/product_class.php');
 
 function add_product_controller($prod_cat,$prod_brand,$title, $price, $desc,$image,  $keywords){
     // create an instance of the Product class

@@ -32,7 +32,7 @@ require('../Settings/core.php');
         $date = date("Y-m-d");
     }
 
-    $result = add_order_controller( $_SESSION['email'], $inv, $date, $stat);
+    $result = add_to_orders_controller( $_SESSION['email'], $inv, $date, $stat);
 
     if($result){
         header('Location: ../View/paymentsuccess.php');

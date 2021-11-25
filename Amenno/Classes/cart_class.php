@@ -1,6 +1,6 @@
 <?php  
 
-require ('../Settings/db_class.php');
+require_once ('../Settings/db_class.php');
 
 class Cart extends Connection{
 
@@ -66,6 +66,36 @@ class Cart extends Connection{
 	function clear_cart($customer_id, $ip){
         return $this->query("delete from cart where c_id = '$customer_id' or ip_add = '$ip' ");
     }
+	/////
+
+
+	function update_order_status($product_id, $order_id){
+        return $this->query ("UPDATE orderdetails SET status='complete' WHERE order_id='$order_id' AND product_id='$product_id'");
+        
+    }
+
+	function get_payment($order_id){
+        return $this->query("SELECT amnt FROM payment WHERE order_id='$order_id'");
+        
+    }
+	function get_order($order_id){
+        return $this->fetch("SELECT customer.customer_name, orders.order_id, orders.invoice_no, orders.order_date, orders.order_status FROM orders JOIN customer ON (customer.customer_id = orders.order_id) WHERE orders.order_id='$order_id'");
+        
+    }
+
+	function get_order_details($order_id){
+        return $this->fetch("SELECT products.product_name, products.product_image, products.product_price, orderdetails.qty, orderdetails.qty * products.product_price as result FROM orderdetails JOIN products ON (orderdetails.product_id = products.product_id) WHERE order_id = '$order_id'");
+        
+    }
+
+	function view_cart($customer_id){
+        return $this->fetch("SELECT cart.p_id, cart.c_id, cart.qty, products.product_name, products.product_image, products.product_price FROM cart JOIN products ON (cart.p_id = products.product_id) WHERE cart.c_id = '$customer_id") ;
+        
+    }
+
+	
+	
+
 
 
 	

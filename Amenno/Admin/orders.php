@@ -1,6 +1,10 @@
 <?php 
-require('../Controllers/product_controller.php');
+include_once('../Controllers/product_controller.php');
+include_once('../Controllers/cart_controller.php');
+include_once('../Controllers/customer_controller.php');
+$orders = get_order($_SESSION['customer_id']);
 ?>
+
 <!doctype html>
 <html lang="en">
  
@@ -69,7 +73,7 @@ require('../Controllers/product_controller.php');
                                             <li class="nav-item">
                                                 <a class="nav-link" href="index.php">Home</a>
                                             </li>
-                                           
+                                          
                                             <li class="nav-item">
                                                 <a class="nav-link" href="product.php">Product</a>
                                             </li>
@@ -85,7 +89,6 @@ require('../Controllers/product_controller.php');
                                             <li class="nav-item">
                                                 <a class="nav-link" href="orders.php">Orders</a>
                                             </li>
-                                         
                                          
                                         </ul>
                                     </div>
@@ -113,13 +116,13 @@ require('../Controllers/product_controller.php');
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">Add a Product </h2>
+                                <h2 class="pageheader-title">Orders </h2>
                              
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Amenno</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Add product Form</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Orders</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -129,78 +132,70 @@ require('../Controllers/product_controller.php');
                     <!-- ============================================================== -->
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
-                    <div class=" container content">
-
-                        <div class="card text-center">
-                            <div class="card-header">
-                             <h2> Add Category</h2>
-                            </div>
-                            <div class="card-body">
-                                <div class=" brand-form">
-                                  
-                                    <form action="../Actions/Add_category.php" method="post" id="category-form">
-                                        
-                                        
-                                        <div class="row no-gutters"><div id="error-block-email" class="error-block-message col-md-8 offset-md-4 text-left"></div></div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="category Name" required="required" name="cname">
-                                        </div>
-
-                                    
-                                        
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block" name="add_cname">Add</button>
-                                        </div>
-                                    
-                                    </form>
-                                </div>
-                              
-                            </div>
-                           
-                          </div>
-                        
-                        
-                    </div>
                 </div>
 
                 <?php 
 
     
-                    $result = select_all_categories_controller();
+                
 
 
-                    // pre_r($result);
+                // pre_r($result);
                 ?>
 
                 <div class="container">
-                    <table class="table">
-                    <thead>
+                    <table class="table table-striped">
+                    <thead class="thead-dark">
                         <tr>
-                        <th scope="col">category id</th>
-                        <th scope="col">category Name</th>
-                        <th scope="col">Action</th>
-                        
+                        <th scope="col">ID</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Sub-total</th>
+                        <th scope="col">Confirm Reciept</th>
                         </tr>
                     </thead>
-                    <?php  
-                    foreach($result as $category){
-                    ?>
                     <tbody>
-                    <tr>
-                        <td> <?php echo $category['cat_id'];?> </td>
-                        <td> <?php echo $category['cat_name'];?> </td>
-                        <?php echo'
-                        <td>  
-                            <a href="updatecategory.php?id='. $category["cat_id"].'" >Update</a>
-                        </td>';
-                        ?>
-                    </tr>
+                        <?php
+                    
+                            foreach($orders as $key => $value){
+                                $a = 0;
+                                $a = $a +1;
+                                
+                                ?>
+                            <tr>
+                                <td>
+                                    <?php echo $a; ?>
+                                </td>
+                                <td>
+                                    <?= $value['customer_name'] ?>
+                                </td>
+                                <td>
+                                    <?= $value['customer_contact'] ?>
+                                </td>
+                                <td>
+                                    <?= $value['product_name'] ?>
+                                </td>
+                                <td class="text-primary">
+                                    <?= $value['product_price'] * $value['qty'] ?>
+                                </td>
+                                <td class="text-primary">
+                                    <a href="<?=  '../Admin/orderdetails_update.php?p_id'.$value['product_id'].'&order_id='.$value['order_id'] ?>" class="btn btn-primary">Update</a>
+                                </td>
+                            </tr>
+                           
+                        
+                            <?php 
+                            } 
+                    
+                            ?>
+                            
 
-
+                        
                     </tbody>
-                    <?php } ?>
-                    </table>
                 </div>
+
                 
             <!-- end wrapper  -->
             <!-- ============================================================== -->

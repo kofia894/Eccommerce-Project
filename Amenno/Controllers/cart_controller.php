@@ -1,6 +1,6 @@
 <?php
 
-require('../Classes/cart_class.php');
+require_once('../Classes/cart_class.php');
 
 function add_to_cart_controller($product_id, $ip_address, $customer_id,$quantity){
     // create an instance of the customer class
@@ -92,8 +92,38 @@ function clear_cart_controller($customer_id, $ip){
     return $cart_instance->clear_cart($customer_id, $ip);
 }
 
+//get payment,get order, get order details,get payment
 
+function get_order($order_id){
 
+    $cart_instance = new Cart();
+    
+    return $cart_instance->get_order($order_id);
+}
+
+function get_order_details($order_id){
+
+    $cart_instance = new Cart();
+    
+    return $cart_instance->get_order_details($order_id);
+}
+
+function get_payment($order_id){
+    $cart_instance = new Cart();
+    
+    return $cart_instance->get_payment($order_id);
+}
+
+function update_order_status($product_id, $order_id){
+    $cart_instance = new Cart();
+    
+    return $cart_instance->update_order_status($product_id, $order_id);
+}
+function view_cart($customer_id){
+    $cart_instance = new Cart();
+    
+    return $cart_instance->view_cart($customer_id);
+}
 
 
 

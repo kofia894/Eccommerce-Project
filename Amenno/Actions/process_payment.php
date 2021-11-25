@@ -23,6 +23,23 @@ CURLOPT_HTTPHEADER => array(
 ),
 ));
 
+$customer_id = $_SESSION['customer_id'];
+$invoice_number = 'invoice';
+$date = date ("Y/m/d");
+$status = 'pending';
+
+$add_order = add_to_orders_controller($customer_id, $invoice_number, $date, $status);
+//print_r($add_order);
+if($add_order){
+    $cart = view_cart($customer_id);
+    foreach($cart as $key => $value){
+        $add_details = add_order_details_controller($value['product_id'], $value['qty'], $order_status);
+    
+        
+
+    }
+}
+
 // get the response and store
 $response = curl_exec($curl);
 // if there are any errors

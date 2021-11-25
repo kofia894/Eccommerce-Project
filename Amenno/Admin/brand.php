@@ -65,7 +65,7 @@ require('../Controllers/product_controller.php');
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
-                                    <div id="submenu-1" class="collapse submenu" style="">
+                                    <div id="submenu-1" class="collapse submenu">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
                                                 <a class="nav-link" href="index.php">Home</a>
@@ -82,6 +82,9 @@ require('../Controllers/product_controller.php');
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="product_list.php">Product List</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="orders.php">Orders</a>
                                             </li>
                                          
                                         </ul>

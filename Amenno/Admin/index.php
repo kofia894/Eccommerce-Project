@@ -84,6 +84,10 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" href="product_list.php">Product List</a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="orders.php">Orders</a>
+                                            </li>
+                                            
                                          
                                         </ul>
                                     </div>
